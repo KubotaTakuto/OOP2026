@@ -3,7 +3,7 @@ namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
             var songs = new List<Song>();
-            for (int i = 0; true; i++) {
+            while (true) {
                 //"曲名:"を出力
                 Console.Write("曲名：");
                 string? Title = Console.ReadLine();
