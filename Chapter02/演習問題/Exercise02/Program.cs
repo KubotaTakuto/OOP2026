@@ -1,19 +1,13 @@
 ﻿namespace Exercise02 {
     internal class Program {
         static void Main(string[] args) {
-            if (args.Length == 3
-                           && int.TryParse(args[1], out var start)
-                           && int.TryParse(args[2], out var stop)
-                           && start <= stop) {
-                if (args.Length >= 1 && args[0] == "-tof") {
-                    PrintMeterToFeetList(start, stop);
-                } else if (args.Length >= 1 && args[0] == "-tom") {
-                    PrintFeetToMeterList(start, stop);
-                } else {
-                    Console.WriteLine("引数エラー");
-                }
-            } else {
-                Console.WriteLine("引数エラー");
+            PrintInchToMeterList(1, 10);
+        }
+        //インチからメートルへの対応表を出力
+        private static void PrintInchToMeterList(int start, int stop) {
+            for (int inch = start; inch <= stop; inch++) {
+                double meter = InchConverter.ToMeter(inch);
+                Console.WriteLine($"{inch}inch = {meter:0.0000}m");
             }
         }
     }

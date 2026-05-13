@@ -7,7 +7,7 @@ namespace Exercise01 {
                 //"曲名:"を出力
                 Console.Write("曲名：");
                 string? Title = Console.ReadLine();
-                if (Title.ToLower() == "end") {
+                if (Title.ToLower() == "end") {     //if(Title.Equals("END",StringComparison.OrdinalIgnoreCase))    //P.131を参考にしてもいいがこういう書き方もある。
                     break;
                 }
                 //"アーティスト名:"を出力
@@ -16,7 +16,7 @@ namespace Exercise01 {
                 //"演奏時間:"を出力
                 Console.Write("演奏時間：");
                 int Length = int.Parse(Console.ReadLine());
-                //Console.ReadLine();//←
+                
                 Song song = new Song(Title, ArtistName, Length);
 
                 songs.Add(song);
