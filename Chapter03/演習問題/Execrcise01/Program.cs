@@ -32,7 +32,7 @@ namespace Execrcise01 {
 
         private static void Exercise2(List<int> numbers) {
             Console.WriteLine("---3.1.2---");
-            numbers.ForEach(n =>Console.WriteLine(n/2.0));
+            numbers.ForEach(n => Console.WriteLine(n / 2.0));
         }
 
         private static void Exercise3(List<int> numbers) {
