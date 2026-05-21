@@ -37,14 +37,18 @@ namespace Execrcise01 {
 
         private static void Exercise3(List<int> numbers) {
             Console.WriteLine("---3.1.3---");
-            var Exists = numbers.Where(s => s >= 50);
-            foreach (var num in Exists) {
+            var exists = numbers.Where(s => s >= 50);
+            foreach (var num in exists) {
                 Console.WriteLine(num);
             }
         }
 
         private static void Exercise4(List<int> numbers) {
-
+            Console.WriteLine("---3.1.4---");
+            var exists = numbers.Select(s => s * 2);
+            foreach (var num in exists) {
+                Console.WriteLine(num);
+            }
         }
     }
 }
