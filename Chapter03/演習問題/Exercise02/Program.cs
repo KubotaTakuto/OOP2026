@@ -30,7 +30,7 @@ namespace Exercise02 {
             //できたらGitのコメント「問題3.2.1完成」
             Console.Write("検索首都名：");
             string target = Console.ReadLine();
-            var Exists = cities.FindIndex(s => s == (target));
+            var Exists = cities.FindIndex(s => s.Equals (target));
                 Console.WriteLine(Exists);
         }
 
@@ -48,7 +48,8 @@ namespace Exercise02 {
 
         private static void Exercise2_4(List<string> cities) {
             //できたらGitのコメント「問題3.2.4完成」
-
+            var name = cities.Where(s => s[0] == 'B').Select(s => s.Length);
+            foreach(var Name  in name) Console.WriteLine(Name);
         }
     }
 }
