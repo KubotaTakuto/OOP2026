@@ -50,6 +50,11 @@ namespace Exercise02 {
             //できたらGitのコメント「問題3.2.4完成」
             var name = cities.Where(s => s.StartsWith('B')).Select(s => s.Length);
             foreach(var Name  in name) Console.WriteLine(Name);
+
+            //問題3.2.4解説
+            Console.WriteLine("");
+            var nanne = cities.Where(s => s.StartsWith('B')).Select(s => new {s, s.Length});
+            foreach (var Nanne in nanne) Console.WriteLine(Nanne.s + ":" + Nanne.Length + "文字");
         }
     }
 }
