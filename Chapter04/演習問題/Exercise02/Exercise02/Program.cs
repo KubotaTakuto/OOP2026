@@ -14,15 +14,18 @@ namespace Exercise02 {
         private static void Exercise1() {
             //if-else文を使用（コード4.9）
             var number = Console.ReadLine();
-            int num = int.Parse(number);
-            if (num >= 500) {
-                Console.WriteLine(num);
-            } else if (num >= 100) {
-                Console.WriteLine(num * 3);
-            } else if (num >= 0) {
-                Console.WriteLine(num * 2);
+            if (int.TryParse(number, out int num)) {
+                if (num >= 500) {
+                    Console.WriteLine(num);
+                } else if (num >= 100) {
+                    Console.WriteLine(num * 3);
+                } else if (num >= 0) {
+                    Console.WriteLine(num * 2);
+                } else {
+                    Console.WriteLine(num);
+                }
             } else {
-                Console.WriteLine(num);
+                Console.WriteLine("入力に誤りがあります");
             }
         }
 
