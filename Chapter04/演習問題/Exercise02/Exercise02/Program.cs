@@ -32,9 +32,9 @@ namespace Exercise02 {
         private static void Exercise2() {
             //switch文を使用（コード4.10）
             Console.Write("整数を入力してください: ");
-            string input = Console.ReadLine();
+            string number = Console.ReadLine();
 
-            if (int.TryParse(input, out int num)) {
+            if (int.TryParse(number, out int num)) {
                 switch (num) {
                     case int n when n < 0:
                         Console.WriteLine(n);
@@ -59,8 +59,21 @@ namespace Exercise02 {
 
         private static void Exercise3() {
             //switch式を使用（コード4.11）
+            Console.Write("整数を入力してください: ");
+            string number = Console.ReadLine();
 
+            if (int.TryParse(number, out int num)) {
+                int result = num switch {
+                    < 0 => num,
+                    < 100 => num * 2,
+                    < 500 => num * 3,
+                    _ => num
+                };
 
+                Console.WriteLine(result);
+            } else {
+                Console.WriteLine("入力値に誤りがあります");
+            }
         }
     }
 }
