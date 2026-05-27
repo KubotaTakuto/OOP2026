@@ -45,7 +45,6 @@ namespace Section04 {
             (c,b,a) = (a,c,2147483647); //入れ替え
             Console.WriteLine("入れ替え後");
             Console.WriteLine("a = " + a + " b = " + b + " c = " + c);
-
             #endregion
         }
 
