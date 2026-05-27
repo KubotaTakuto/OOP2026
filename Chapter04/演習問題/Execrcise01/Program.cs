@@ -22,6 +22,12 @@
                 Console.WriteLine(s);
             }
 
+            //foreach (string lang in langs) {
+            //    if (lang.Contains('S')) {
+            //        Console.WriteLine(lang);
+            //    }
+            //}
+
             //for文
             Console.WriteLine("\nfor文で出力");
             for (int i = 0; i < langs.Count; i++) {
@@ -32,18 +38,19 @@
 
             //while文
             Console.WriteLine("\nwhile文で出力");
-            var flag = true;
-            while (flag == true) {
-                if (langs.Contains("S")) {
-                    Console.WriteLine(langs);
-                    flag = false;
+            int count = 0;
+            while (count < langs.Count) {
+                if (langs[count].Contains('S')) {
+                    Console.WriteLine(langs[count]);
+                    count++;
+                }
             }
-        }
         }
 
         private static void Exercise2(List<string> langs) {
             Console.WriteLine("---4.1.2---");
             //LINQを使用する（Where）
+            
         }
 
         private static void Exercise3(List<string> langs) {
