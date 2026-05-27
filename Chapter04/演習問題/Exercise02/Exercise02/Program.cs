@@ -31,7 +31,30 @@ namespace Exercise02 {
 
         private static void Exercise2() {
             //switch文を使用（コード4.10）
+            Console.Write("整数を入力してください: ");
+            string input = Console.ReadLine();
 
+            if (int.TryParse(input, out int num)) {
+                switch (num) {
+                    case int n when n < 0:
+                        Console.WriteLine(n);
+                        break;
+
+                    case int n when n < 100:
+                        Console.WriteLine(n * 2);
+                        break;
+
+                    case int n when n < 500:
+                        Console.WriteLine(n * 3);
+                        break;
+
+                    default:
+                        Console.WriteLine(num);
+                        break;
+                }
+            } else {
+                Console.WriteLine("入力値に誤りがあります");
+            }
         }
 
         private static void Exercise3() {
