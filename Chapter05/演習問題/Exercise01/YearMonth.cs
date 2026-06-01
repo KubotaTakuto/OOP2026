@@ -7,15 +7,24 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     //5.1.1
     public class YearMonth {
-        public string Year { get; init; }
-        public string Month { get; init; }
+        public int Year { get; init; }
+        public int Month { get; init; }
 
-        public YearMonth(string year ,string month) {
+        public YearMonth(int year, int month) {
             Year = year;
             Month = month;
         }
         //5.1.2
-        public string Is21Century => Is21Century ;
+        //Yearが2001～2100年ならtrue、それ以外ならfalse
+        public bool Is21Century => Year > 2000 && Year <= 2100;
 
+        //5.1.3
+        public YearMonth AddOneMonth() {
+            if(Month >= 12) {
+                return new YearMonth(Year+1, Month-12);
+            } else {
+                return new YearMonth(Year, Month + 1);
+            }
+        }
     }
 }
