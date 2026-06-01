@@ -13,7 +13,8 @@ namespace Exercise02 {
         //P89～P90を参考に
         private static void Exercise1() {
             //if-else文を使用（コード4.9）
-            var number = Console.ReadLine();
+            Console.Write("整数を入力してください：");
+            string? number = Console.ReadLine();
             if (int.TryParse(number, out int num)) {
                 if (num >= 500) {
                     Console.WriteLine(num);
@@ -25,14 +26,14 @@ namespace Exercise02 {
                     Console.WriteLine(num);
                 }
             } else {
-                Console.WriteLine("入力に誤りがあります");
+                Console.WriteLine("入力値に誤りがあります");
             }
         }
 
         private static void Exercise2() {
             //switch文を使用（コード4.10）
             Console.Write("整数を入力してください: ");
-            string number = Console.ReadLine();
+            string? number = Console.ReadLine();
 
             if (int.TryParse(number, out int num)) {
                 switch (num) {
@@ -60,7 +61,7 @@ namespace Exercise02 {
         private static void Exercise3() {
             //switch式を使用（コード4.11）
             Console.Write("整数を入力してください: ");
-            string number = Console.ReadLine();
+            string? number = Console.ReadLine();
 
             if (int.TryParse(number, out int num)) {
                 int result = num switch {
