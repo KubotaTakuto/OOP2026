@@ -56,8 +56,8 @@ namespace Exercise02 {
 
         //5.2.5
         private static void Exercise5(YearMonth[] ymCollection) {
-            var om = ymCollection.Select(s => s.AddOneMonth()).ToArray();
-            foreach (var ym in om) {
+            var array = ymCollection.Select(s => s.AddOneMonth()).ToArray();
+            foreach (var ym in array) {
                 Console.WriteLine(ym);
             }
         }
