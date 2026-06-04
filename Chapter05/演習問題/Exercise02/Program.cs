@@ -43,20 +43,22 @@ namespace Exercise02 {
 
         //5.2.4
         private static void Exercise4(YearMonth[] ymCollection) {
-            //できた人は、null合体演算子、null条件演算子を使って一行で記述せよ
             var f21c = FindFirst21C(ymCollection);
             if (f21c is not null) {
                 Console.WriteLine(f21c);
             } else {
                 Console.WriteLine("21世紀のデータはありません");
             }
+
+            //できた人は、null合体演算子、null条件演算子を使って一行で記述せよ
+
         }
 
         //5.2.5
         private static void Exercise5(YearMonth[] ymCollection) {
-            foreach (var ym in ymCollection) {
-                Console.WriteLine(ym.AddOneMonth());
-
+            var om = ymCollection.Select(s => s.AddOneMonth()).ToArray();
+            foreach (var ym in om) {
+                Console.WriteLine(ym);
             }
         }
     }
