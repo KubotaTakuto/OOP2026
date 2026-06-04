@@ -16,30 +16,43 @@ namespace Exercise02 {
             Console.WriteLine("5.2.2");
             Exercise2(ymCollection);
 
-            Console.WriteLine("5.2.4");
+            Console.WriteLine("\n5.2.4");
             Exercise4(ymCollection);
 
 
-            Console.WriteLine("5.2.5");
+            Console.WriteLine("\n5.2.5");
             Exercise5(ymCollection);
         }
 
+        //5.2.2
         private static void Exercise2(YearMonth[] ymCollection) {
-            for (int i = 0; i < ymCollection.Length; i++) {
-                Console.WriteLine(ymCollection[i]);
+            foreach (var ym in ymCollection) {
+                Console.WriteLine(ym);
             }
         }
 
-        private static void Exercise4(YearMonth[] ymCollection) {
-            foreach (YearMonth ym in ymCollection) {
+        //5.2.3
+        private static YearMonth? FindFirst21C(YearMonth[] yearMonths) {
+            foreach (var ym in yearMonths) {
                 if (ym.Is21Century) {
-                    Console.WriteLine(ym);
-                    break;
+                    return ym;
                 }
             }
-            //ymCollection ??= Console.WriteLine("21世紀のデータはありません");
+            return null;
         }
 
+        //5.2.4
+        private static void Exercise4(YearMonth[] ymCollection) {
+            //できた人は、null合体演算子、null条件演算子を使って一行で記述せよ
+            var f21c = FindFirst21C(ymCollection);
+            if (f21c is not null) {
+                Console.WriteLine(f21c);
+            } else {
+                Console.WriteLine("21世紀のデータはありません");
+            }
+        }
+
+        //5.2.5
         private static void Exercise5(YearMonth[] ymCollection) {
 
         }
