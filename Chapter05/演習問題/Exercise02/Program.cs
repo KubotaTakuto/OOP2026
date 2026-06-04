@@ -37,6 +37,7 @@ namespace Exercise02 {
                     break;
                 }
             }
+            //ymCollection ??= Console.WriteLine("21世紀のデータはありません");
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
