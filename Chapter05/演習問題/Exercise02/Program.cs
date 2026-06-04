@@ -51,15 +51,14 @@ namespace Exercise02 {
             }
 
             //できた人は、null合体演算子、null条件演算子を使って一行で記述せよ
-
+            Console.WriteLine(FindFirst21C(ymCollection)?.ToString() ?? "21世紀のデータはありません");
         }
 
         //5.2.5
         private static void Exercise5(YearMonth[] ymCollection) {
             var array = ymCollection.Select(s => s.AddOneMonth()).ToArray();
-            foreach (var ym in array) {
-                Console.WriteLine(ym);
-            }
+               Exercise2(array);
+            
         }
     }
 }
