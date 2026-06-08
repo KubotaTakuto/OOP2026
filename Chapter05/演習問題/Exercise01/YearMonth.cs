@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     //5.1.1
     //プロパティ（P114参照）
-    public class YearMonth {
+    public record YearMonth {
         public int Year { get; init; }
         public int Month { get; init; }
 
