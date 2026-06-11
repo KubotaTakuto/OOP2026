@@ -77,11 +77,28 @@ namespace Exercise03 {
 
         private static void Exercise6(string text) {
             //アルファベットの数を数えて表示
-            var dict = new Dictionary<char, int>() {
-                {'a', 0}, {'b', 0}, {'c', 0}, {'d', 0}, {'e', 0}, {'f', 0}, {'g', 0}, {'h', 0}, {'i', 0}, {'j', 0}, {'k', 0}, {'l', 0}, {'m', 0},
-                {'n', 0}, {'o', 0}, {'p', 0}, {'q', 0}, {'r', 0}, {'s', 0}, {'t', 0}, {'u', 0}, {'v', 0}, {'w', 0}, {'x', 0}, {'y', 0}, {'z', 0},
-            };
+            var str = text.ToLower().Replace(" ","");
 
+            //辞書（ディクショナリ）を使った集計
+            //var alphDicCount = Enumerable.Range('a', 26)
+            //                .ToDictionary(num => ((char)num).ToString(),num => 0);
+
+            var dict = new SortedDictionary<char, int>();
+            foreach (var c in str) {
+                //既に店舗名が辞書のキーに登録されているか？
+                if (dict.ContainsKey(c))
+                    dict[c] ++; //登録されている場合
+                else 
+                    dict[c] = 1; //未登録の場合
+            }
+            foreach (var word in dict) {
+                Console.WriteLine(word.Key + ":" + word.Value);
+            }
+
+            //配列を用いた集計
+
+
+            //
         }
     }
 }
