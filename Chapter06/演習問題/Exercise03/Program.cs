@@ -1,7 +1,4 @@
 ﻿
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-
 namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
@@ -37,11 +34,13 @@ namespace Exercise03 {
             string str1 = Console.ReadLine();
             Console.Write("置き換える文字：");
             string str2 = Console.ReadLine();
+
             var replaced = text.Replace(str1, str2);
             Console.WriteLine(replaced);
         }
 
         private static void Exercise3(string text) {
+            //やらなくていい
             //var words = text.Split(' ');
             //var sb = new StringBuilder();
             //foreach (var word in words) {
@@ -61,18 +60,28 @@ namespace Exercise03 {
         }
 
         private static void Exercise5(string text) {
-            var words = text.Split(' ');
-            for (int i = 0; i < words.Length; i++) {
-                if (words[i].Length <= 4) {
-                    Console.WriteLine(words[i]);
-                }
-            }
+            var words = text.Split(' ').Where(s => s.Length <= 4);
+            foreach(var word in words)
+                Console.WriteLine(word);
+            //1行で即時実行
+            //text.Split(' ').Where(s => s.Length <= 4).ToList().ForEach(Console.WriteLine);
+
+            //自分で書いた
+            //var words = text.Split(' ');
+            //for (int i = 0; i < words.Length; i++) {
+            //    if (words[i].Length <= 4) {
+            //        Console.WriteLine(words[i]);
+            //    }
+            //}
         }
 
         private static void Exercise6(string text) {
             //アルファベットの数を数えて表示
-            var count = text.Count(c => c != ' ');
-            Console.WriteLine($"文字数：{count}");
+            var dict = new Dictionary<char, int>() {
+                {'a', 0}, {'b', 0}, {'c', 0}, {'d', 0}, {'e', 0}, {'f', 0}, {'g', 0}, {'h', 0}, {'i', 0}, {'j', 0}, {'k', 0}, {'l', 0}, {'m', 0},
+                {'n', 0}, {'o', 0}, {'p', 0}, {'q', 0}, {'r', 0}, {'s', 0}, {'t', 0}, {'u', 0}, {'v', 0}, {'w', 0}, {'x', 0}, {'y', 0}, {'z', 0},
+            };
+
         }
     }
 }
