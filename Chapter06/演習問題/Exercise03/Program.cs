@@ -41,16 +41,7 @@ namespace Exercise03 {
 
         private static void Exercise3(string text) {
             //やらなくていい
-            //var words = text.Split(' ');
-            //var sb = new StringBuilder();
-            //foreach (var word in words) {
-            //    if(word.Equals(' ')) {
-            //        sb.Append(' ');
-            //    } else {
-            //        sb.Append(word);
-            //    }
-            //}
-            //Console.WriteLine(sb.ToString());
+            
         }
 
 
@@ -103,10 +94,14 @@ namespace Exercise03 {
             for (var ch = 'a'; ch < 'z'; ch++) {
                 Console.WriteLine($"{ch}:{array[ch - 'a']}");
             }
+            
+            Console.WriteLine() ;   //改行
 
             //'a'から順にカウントして集計
-
-
+            for (char ch = 'a'; ch < 'z'; ch++) {
+                Console.WriteLine($"{ch}:{str.Count(c => c == ch)}");
+                //                             ラムダ式⤴
+            }
         }
     }
 }
