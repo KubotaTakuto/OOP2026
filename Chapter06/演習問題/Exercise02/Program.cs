@@ -6,6 +6,7 @@
             if (int.TryParse(stnum, out int result)) {
                 var num = result.ToString("#,0");
                 Console.WriteLine(num);
+                //Console.WriteLine($"{num:#,0}");
             } else {
                 Console.WriteLine("整数文字列ではありません");
             }
