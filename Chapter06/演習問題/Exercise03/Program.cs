@@ -1,4 +1,6 @@
 ﻿
+using System.Text;
+
 namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
@@ -41,7 +43,18 @@ namespace Exercise03 {
 
         private static void Exercise3(string text) {
             //やらなくていい
-            
+            string[] words = text.Split(' ');
+            var sb = new StringBuilder();
+            foreach (var word in words) {
+                if (sb.Length == 0) {
+                    sb.Append(word);
+                } else {
+                    sb.Append(" ");
+                    sb.Append(word);
+                }
+            }
+            sb.Append('.');
+            Console.WriteLine(sb);
         }
 
 
@@ -52,7 +65,7 @@ namespace Exercise03 {
 
         private static void Exercise5(string text) {
             var words = text.Split(' ').Where(s => s.Length <= 4);
-            foreach(var word in words)
+            foreach (var word in words)
                 Console.WriteLine(word);
             //1行で即時実行
             //text.Split(' ').Where(s => s.Length <= 4).ToList().ForEach(Console.WriteLine);
@@ -68,7 +81,7 @@ namespace Exercise03 {
 
         private static void Exercise6(string text) {
             //アルファベットの数を数えて表示
-            var str = text.ToLower().Replace(" ","");
+            var str = text.ToLower().Replace(" ", "");
 
             //辞書（ディクショナリ）を使った集計
             var alphDicCount = Enumerable.Range('a', 26)
@@ -76,7 +89,7 @@ namespace Exercise03 {
 
             //var dict = new SortedDictionary<char, int>();
             foreach (var c in str) {
-                    alphDicCount[c] ++;
+                alphDicCount[c]++;
             }
 
             foreach (var word in alphDicCount) {
@@ -87,15 +100,15 @@ namespace Exercise03 {
 
             //配列を用いた集計
             var array = Enumerable.Repeat(0, 26).ToArray();
-            foreach(var alph in str) {
-                array[alph-'a'] ++;
+            foreach (var alph in str) {
+                array[alph - 'a']++;
             }
 
             for (var ch = 'a'; ch < 'z'; ch++) {
                 Console.WriteLine($"{ch}:{array[ch - 'a']}");
             }
-            
-            Console.WriteLine() ;   //改行
+
+            Console.WriteLine();   //改行
 
             //'a'から順にカウントして集計
             for (char ch = 'a'; ch < 'z'; ch++) {
