@@ -43,9 +43,9 @@ namespace Exercise03 {
 
         private static void Exercise3(string text) {
             //やらなくていい
-            string[] words = text.Split(' ');
+            var array = text.Split(' ');
             var sb = new StringBuilder();
-            foreach (var word in words) {
+            foreach (var word in array) {
                 if (sb.Length == 0) {
                     sb.Append(word);
                 } else {
@@ -53,8 +53,7 @@ namespace Exercise03 {
                     sb.Append(word);
                 }
             }
-            sb.Append('.');
-            Console.WriteLine(sb);
+            Console.WriteLine(sb+".");
         }
 
 
