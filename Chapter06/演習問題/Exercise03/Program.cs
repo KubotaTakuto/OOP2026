@@ -54,8 +54,31 @@ namespace Exercise03 {
                 }
             }
             Console.WriteLine(sb+".");
-        }
 
+            //別解(for文)
+            //var array = text.Split(' ');
+            //var sb = new StringBuilder();
+            //sb.Append(array[0]);
+            //for (int i = 1; i < array.Length; i++) {
+            //    sb.Append(" ");
+            //    sb.Append(array);
+            //}
+
+            //var sb = new StringBuilder();　を
+            //var sb = new StringBuilder(array[0]);にすると
+            //sb.Append(array[0]);が消える
+
+
+            //別解(foreach文)
+            //var array = text.Split(' ');
+            //var sb = new StringBuilder(array[0]);
+            //foreach (var word in array.Skip(1)) {
+            //        sb.Append(" ");
+            //        sb.Append(word);
+            //}
+            //  //末尾はピリオド(.)で終わる
+            //Console.WriteLine(sb + ".");
+        }
 
         private static void Exercise4(string text) {
             var words = text.Split(' ');
