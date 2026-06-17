@@ -1,12 +1,14 @@
-﻿namespace Exercise04 {
+﻿using System.Text;
+
+namespace Exercise04 {
     internal class Program {
         static void Main(string[] args) {
             var line = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
 
-
-
-
-
+            var array = line.Split(';','=');
+            for (int i = 0; i < array.Length; i+=2) {
+                Console.WriteLine($"{ToJapanese(array[i])}：{array[i + 1]}");
+            }
         }
         static string ToJapanese(string key) {
             return key switch {
