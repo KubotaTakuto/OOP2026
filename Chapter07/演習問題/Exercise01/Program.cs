@@ -29,7 +29,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(int[] numbers) {
-            
+            foreach(var lastarray in numbers.TakeLast(2))
+            Console.WriteLine(lastarray);
         }
 
         private static void Exercise3(int[] numbers) {
