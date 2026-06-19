@@ -40,11 +40,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise4(int[] numbers) {
-
+            var min = numbers.Order().Take(3);
+            foreach (var num in min) 
+                Console.WriteLine(num);
         }
 
         private static void Exercise5(int[] numbers) {
-
+            
         }
     }
 }
