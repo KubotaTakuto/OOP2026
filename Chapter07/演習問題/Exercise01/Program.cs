@@ -24,8 +24,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise1(int[] numbers) {
-            var maxnum = numbers.Max();
-            Console.WriteLine(maxnum);
+            Console.WriteLine(numbers.Max());
         }
 
         private static void Exercise2(int[] numbers) {
@@ -34,18 +33,21 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(int[] numbers) {
+            //P173参照
             var fast0 = numbers.Select(n=>n.ToString("000")).ToArray();
             foreach(var num in fast0)
                 Console.WriteLine(num);
         }
 
         private static void Exercise4(int[] numbers) {
+            //P175参照
             var min = numbers.Order().Take(3);
             foreach (var num in min) 
                 Console.WriteLine(num);
         }
 
         private static void Exercise5(int[] numbers) {
+            //P174参照
             var over = numbers.Distinct().Count(x => x > 10);
             Console.WriteLine(over);
         }
