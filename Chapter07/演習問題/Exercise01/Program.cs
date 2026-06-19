@@ -29,12 +29,14 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(int[] numbers) {
-            foreach(var lastarray in numbers.TakeLast(2))
-            Console.WriteLine(lastarray);
+            foreach (var lastarray in numbers.TakeLast(2))
+                Console.WriteLine(lastarray);
         }
 
         private static void Exercise3(int[] numbers) {
-
+            var fast0 = numbers.Select(n=>n.ToString("000")).ToArray();
+            foreach(var num in fast0)
+                Console.WriteLine(num);
         }
 
         private static void Exercise4(int[] numbers) {
