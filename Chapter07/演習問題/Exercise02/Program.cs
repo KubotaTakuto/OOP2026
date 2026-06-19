@@ -37,14 +37,16 @@ namespace Exercise02 {
         }
 
         private static void Exercise1(List<Book> books) {
+            //P166
             foreach (Book book in books.Where(x => x.Title == "ワンダフル・C#ライフ")) { 
-            Console.WriteLine("価格："+book.Price);
-                Console.WriteLine("ページ数："+book.Pages);
+            Console.Write(book.Price + " " + book.Pages);
+
             }
         }
 
         private static void Exercise2(List<Book> books) {
-
+            var cnt = books.Where(x => x.Title.Contains("C#")).Count();
+            Console.WriteLine(cnt);
         }
 
         private static void Exercise3(List<Book> books) {
