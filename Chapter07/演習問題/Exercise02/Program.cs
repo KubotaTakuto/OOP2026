@@ -40,13 +40,12 @@ namespace Exercise02 {
         private static void Exercise1(List<Book> books) {
             //P166
             foreach (Book book in books.Where(x => x.Title == "ワンダフル・C#ライフ")) { 
-            Console.Write(book.Price + " " + book.Pages);
-
+            Console.WriteLine(book.Price + " " + book.Pages);
             }
         }
 
         private static void Exercise2(List<Book> books) {
-            var cnt = books.Where(x => x.Title.Contains("C#")).Count();
+            var cnt = books.Count(x => x.Title.Contains("C#"));
             Console.WriteLine(cnt);
         }
 
