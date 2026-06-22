@@ -1,4 +1,5 @@
-﻿using Section01;    //Section01プロジェクトにあるBookクラスを利用
+﻿using Section01;
+using System.Data;    //Section01プロジェクトにあるBookクラスを利用
 
 namespace Exercise02 {
     internal class Program {
@@ -72,7 +73,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise7(List<Book> books) {
-
+            var all = books.Where(x => x.Title.Contains("C#") && x.Pages <= 500);
+            foreach (var book in all) {
+                Console.WriteLine(book.Title);
+            }
         }
     }
 }
