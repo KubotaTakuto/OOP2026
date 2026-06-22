@@ -65,7 +65,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise6(List<Book> books) {
-            var allwrite = books.FindAll(x => x.Pages >= 400);
+            var allwrite = books.FindAll(x => x.Pages >= 400).OrderByDescending(x=>x.Price);
+            foreach (var book in allwrite) {
+                Console.WriteLine(book.Title + "　" + book.Price);
+            }
         }
 
         private static void Exercise7(List<Book> books) {
