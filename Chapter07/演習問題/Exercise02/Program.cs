@@ -56,7 +56,7 @@ namespace Exercise02 {
 
         private static void Exercise4(List<Book> books) {
             var title = books.FirstOrDefault(x => x.Price >= 4000);
-            Console.WriteLine(title);
+            Console.WriteLine(title.Title);
         }
 
         private static void Exercise5(List<Book> books) {
@@ -65,7 +65,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise6(List<Book> books) {
-
+            var allwrite = books.FindAll(x => x.Pages >= 400);
         }
 
         private static void Exercise7(List<Book> books) {
