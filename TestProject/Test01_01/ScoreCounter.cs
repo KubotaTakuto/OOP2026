@@ -7,30 +7,30 @@
             _score = ReadScore(filePath);
         }
 
-        //メソッドの概要：
+        //メソッドの概要：カンマ区切りで分割
         private static IEnumerable<Student> ReadScore(string filePath) {
             var sales = new List<Student>();
             var lines = File.ReadAllLines(filePath);
-            
-
-
-
-
-
-
-
+            foreach (var line in lines) {
+                var student = line.Split(',');
+                var total = new Student {
+                    Name = student[0],
+                    Subject = student[1],
+                    Score = int.Parse(student[2])
+                };
+                sales.Add(total);
+            }
             return sales;
         }
 
-        //メソッドの概要：
+        //メソッドの概要：科目別合計
         public IDictionary<string, int> GetPerStudentScore() {
             var dict = new Dictionary<string, int>();
-
-
-
-
-
-
+            foreach (var student in _score) {
+                if (dict.ContainsKey(student.Subject))
+                    dict[student.Subject] += student.Score;
+                else dict[student.Subject] = student.Score;
+            }
             return dict;
         }
     }
