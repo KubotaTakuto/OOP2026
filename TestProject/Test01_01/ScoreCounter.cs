@@ -9,7 +9,7 @@
 
         //メソッドの概要：カンマ区切りで分割
         private static IEnumerable<Student> ReadScore(string filePath) {
-            var sales = new List<Student>();
+            var students = new List<Student>();
             var lines = File.ReadAllLines(filePath);
             foreach (var line in lines) {
                 var student = line.Split(',');
@@ -18,9 +18,9 @@
                     Subject = student[1],
                     Score = int.Parse(student[2])
                 };
-                sales.Add(total);
+                students.Add(total);
             }
-            return sales;
+            return students;
         }
 
         //メソッドの概要：科目別合計

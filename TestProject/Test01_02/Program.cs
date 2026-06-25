@@ -60,13 +60,7 @@
 
         //問題１　合計値を表示（式形式で記述せよ）
         //　　　　出力結果【618】
-        private static void Exercise01(int[] numbers) {
-            int sum = 0;
-            for (int i = 0; i < numbers.Length; i++) {
-                sum += numbers[i];
-            }
-            Console.WriteLine(sum);
-        }
+        private static void Exercise01(int[] numbers) => Console.WriteLine(numbers.Sum());
 
 
         //問題２　偶数の最大値を表示（式形式で記述せよ）
