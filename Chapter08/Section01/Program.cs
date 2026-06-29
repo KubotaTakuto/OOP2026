@@ -17,16 +17,13 @@ namespace Section01 {
 
                 if (prefOfficeDict.ContainsKey(pref)) {
                     Console.Write("上書きしますか？（Y/N）：");
-                    if (Console.ReadLine().Equals("Y")) {
-                        prefOfficeDict[pref] = preCaptalLocation;
-                    }
+                    if (Console.ReadLine().Equals("N")) continue;
                 } else {
                     prefOfficeDict[pref] = preCaptalLocation;
                 }
             }
 
             while (true) {
-
                 switch (menuDisp()) {
                     case 1:
                         allDisp();
@@ -34,10 +31,9 @@ namespace Section01 {
                     case 2:
                         searchPrefCaptalLocation();
                         break;
-                    case 9:
-                        break;
+                    default:
+                        return;
                 }
-                break;
 
                         //Console.WriteLine("****メニュー****");
                         //Console.WriteLine("1：一覧表示");
@@ -85,7 +81,10 @@ namespace Section01 {
         private static void searchPrefCaptalLocation() {
             Console.Write("都道府県：");
             var searchpref = Console.ReadLine();
-            Console.WriteLine($"{searchpref}の県庁所在地は{prefOfficeDict[searchpref]}です。");
+            if(searchpref is null) return;
+            if (prefOfficeDict.ContainsKey(searchpref)) {
+                Console.WriteLine($"{searchpref}の県庁所在地は{prefOfficeDict[searchpref]}です。");
+            }
         }
     }
 }
