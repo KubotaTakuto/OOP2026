@@ -23,12 +23,26 @@ namespace Exercise01 {
             }
             
             foreach (var alph in dict) {
-                Console.WriteLine($"{alph.Key}:{alph.Value}");
+                Console.WriteLine($"'{alph.Key}':{alph.Value}");
             }
         }
 
         private static void Exercise2(string text) {
+            var dict = new SortedDictionary<char, int>();
+            var array = text.ToUpper();
+            foreach (var ch in array) {
+                if ('A' <= ch && ch <= 'Z') {
+                    if (dict.ContainsKey(ch)) {
+                        dict[ch]++;
+                    } else {
+                        dict[ch] = 1;
+                    }
+                }
+            }
 
+            foreach (var alph in dict) {
+                Console.WriteLine($"'{alph.Key}':{alph.Value}");
+            }
         }
     }
 }
