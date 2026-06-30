@@ -21,10 +21,25 @@ namespace Exercise01 {
                     }
                 }
             }
-            
+
             foreach (var alph in dict) {
                 Console.WriteLine($"'{alph.Key}':{alph.Value}");
             }
+
+            //別解
+            //foreach (var ch in text.ToUpper()) {
+            //    if ('A' <= ch && ch <= 'Z') {
+            //        if (dict.ContainsKey(ch)) {
+            //            dict[ch]++;
+            //        } else {
+            //            dict[ch] = 1;
+            //        }
+            //    }
+            //}
+
+            //foreach (var alph in dict.OrderBy(x => x.Key)) {
+            //    Console.WriteLine($"'{alph.Key}':{alph.Value}");
+            //}
         }
 
         private static void Exercise2(string text) {
@@ -43,6 +58,21 @@ namespace Exercise01 {
             foreach (var alph in dict) {
                 Console.WriteLine($"'{alph.Key}':{alph.Value}");
             }
+
+            //別解
+            //foreach (var ch in text.ToUpper()) {
+            //    if ('A' <= ch && ch <= 'Z') {
+            //        if (dict.ContainsKey(ch)) {
+            //            dict[ch]++;
+            //        } else {
+            //            dict[ch] = 1;
+            //        }
+            //    }
+            //}
+
+            //foreach (var alph in dict.OrderBy(x => x.Key)) {
+            //    Console.WriteLine($"'{alph.Key}':{alph.Value}");
+            //}
         }
     }
 }
