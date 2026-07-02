@@ -34,6 +34,7 @@
             // 新たなGetAllメソッドを追加済みなので、使用してLINQで処理を行う
             var abs = abbrs.GetAll();
             foreach (var abbr in abs) {
+                if(abbr.Key.Length == 3)
                 Console.WriteLine($"{abbr.Key}={abbr.Value}");
             }
 
