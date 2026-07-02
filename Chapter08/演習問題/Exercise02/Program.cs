@@ -3,13 +3,15 @@
         static void Main(string[] args) {
             var abbrs = new Abbreviations();
 
+            Console.WriteLine($"件数：{abbrs.Count}"); //18件
+
             // Addメソッドの呼び出し例
             abbrs.Add("IOC", "国際オリンピック委員会");
             abbrs.Add("NPT", "核拡散防止条約");
 
             // 8.2.3 (Countの呼び出し例)
             // 上のAddメソッドで、２つのオブジェクトを追加しているので、読み込んだ単語数+2が、Countの値になる。
-            Console.WriteLine(abbrs.Count);
+            Console.WriteLine($"追加後の件数：{abbrs.Count}");
 
 
 
@@ -19,7 +21,7 @@
 
             // 8.2.3 (Removeの呼び出し例)
             abbrs.Remove("NPT");
-            Console.WriteLine(abbrs.Count);
+            Console.WriteLine($"削除後の件数：{abbrs.Count}");
 
 
 
@@ -32,14 +34,10 @@
 
             // 8.2.4
             // 新たなGetAllメソッドを追加済みなので、使用してLINQで処理を行う
-            var abs = abbrs.GetAll();
+            var abs = abbrs.GetAll().Where(x => x.Key.Length == 3);
             foreach (var abbr in abs) {
-                if(abbr.Key.Length == 3)
                 Console.WriteLine($"{abbr.Key}={abbr.Value}");
             }
-
-
-
         }
     }
 }
