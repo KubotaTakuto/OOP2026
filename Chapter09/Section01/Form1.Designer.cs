@@ -26,6 +26,9 @@
             dtpDate = new DateTimePicker();
             btGet = new Button();
             tbOut = new TextBox();
+            nudDay = new NumericUpDown();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
             // dtpDate
@@ -50,21 +53,42 @@
             // tbOut
             // 
             tbOut.Font = new Font("Yu Gothic UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbOut.Location = new Point(12, 169);
+            tbOut.Location = new Point(12, 158);
             tbOut.Name = "tbOut";
             tbOut.Size = new Size(419, 43);
             tbOut.TabIndex = 2;
+            // 
+            // nudDay
+            // 
+            nudDay.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            nudDay.Location = new Point(20, 113);
+            nudDay.Name = "nudDay";
+            nudDay.Size = new Size(85, 39);
+            nudDay.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label1.Location = new Point(111, 127);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 25);
+            label1.TabIndex = 4;
+            label1.Text = "日後";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1207, 500);
+            Controls.Add(label1);
+            Controls.Add(nudDay);
             Controls.Add(tbOut);
             Controls.Add(btGet);
             Controls.Add(dtpDate);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)nudDay).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -74,5 +98,7 @@
         private DateTimePicker dtpDate;
         private Button btGet;
         private TextBox tbOut;
+        private NumericUpDown nudDay;
+        private Label label1;
     }
 }
