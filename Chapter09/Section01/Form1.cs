@@ -1,4 +1,3 @@
-using Microsoft.VisualBasic;
 using System.Globalization;
 
 namespace Section01 {
@@ -16,9 +15,13 @@ namespace Section01 {
             DateTime birth = dtpBirth.Value;    //¶‚Ü‚ê‚½“ú
             DateTime today = DateTime.Today;    //¡“ú‚Ì“ú•t
 
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var dayOfWeek = culture.DateTimeFormat.GetDayName(birth.DayOfWeek);
+
             tbOut.Text = "‚ ‚È‚½‚Í" + GetAge(birth, today) + "Î‚Å‚·";
             tbOut2.Text = (today - birth).Days + "“ú";
-            tbOut3.Text = $"¶‚Ü‚ê‚½{birth.Month}Œ{birth.Day}“ú‚Í‘æ{NthWeek(birth)}T‚Ì";
+            tbOut3.Text = $"¶‚Ü‚ê‚½{birth.Month}Œ{birth.Day}“ú‚Í‘æ{NthWeek(birth)}T‚Ì{dayOfWeek}—j“ú‚Å‚·";
         }
 
         static int GetAge(DateTime birthday, DateTime targetDay) {

@@ -143,7 +143,7 @@
             tbOut3.Location = new Point(73, 419);
             tbOut3.Multiline = true;
             tbOut3.Name = "tbOut3";
-            tbOut3.Size = new Size(419, 69);
+            tbOut3.Size = new Size(419, 79);
             tbOut3.TabIndex = 2;
             // 
             // label5
@@ -159,7 +159,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1207, 500);
+            ClientSize = new Size(565, 500);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
