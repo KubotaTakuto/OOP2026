@@ -16,12 +16,16 @@ namespace Section01 {
             DateTime birth = dtpBirth.Value;    //¶‚Ü‚ê‚½“ú
             DateTime today = DateTime.Today;    //¡“ú‚Ì“ú•t
 
-            int age = (today.Year - birth.Year);
-            if(today < birth.AddYears(age)) {
+            tbAge.Text = "‚ ‚È‚½‚Í" + GetAge(birth, today) + "Î‚Å‚·";
+            tbOut.Text = (today - birth).Days + "“ú";
+        }
+
+        static int GetAge(DateTime birthday, DateTime targetDay) {
+            var age = targetDay.Year - birthday.Year;
+            if (targetDay < birthday.AddYears(age)) {
                 age--;
             }
-            tbAge.Text = "‚ ‚È‚½‚Í" + age + "Î‚Å‚·";
-            tbOut.Text = (today - birth).Days + "“ú";
+            return age;
         }
     }
 }
