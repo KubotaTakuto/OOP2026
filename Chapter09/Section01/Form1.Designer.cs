@@ -36,6 +36,8 @@
             label4 = new Label();
             tbOut3 = new TextBox();
             label5 = new Label();
+            tbOut4 = new TextBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
@@ -155,11 +157,29 @@
             label5.TabIndex = 7;
             label5.Text = "メモ";
             // 
+            // tbOut4
+            // 
+            tbOut4.Font = new Font("Yu Gothic UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbOut4.Location = new Point(73, 524);
+            tbOut4.Name = "tbOut4";
+            tbOut4.Size = new Size(419, 43);
+            tbOut4.TabIndex = 2;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(73, 506);
+            label6.Name = "label6";
+            label6.Size = new Size(81, 15);
+            label6.TabIndex = 7;
+            label6.Text = "誕生日まであと";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(565, 500);
+            ClientSize = new Size(579, 571);
+            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -169,6 +189,7 @@
             Controls.Add(nudDay);
             Controls.Add(tbOut);
             Controls.Add(tbOut3);
+            Controls.Add(tbOut4);
             Controls.Add(tbOut2);
             Controls.Add(btGet);
             Controls.Add(dtpBirth);
@@ -195,5 +216,7 @@
         private Label label4;
         private TextBox tbOut3;
         private Label label5;
+        private TextBox tbOut4;
+        private Label label6;
     }
 }
