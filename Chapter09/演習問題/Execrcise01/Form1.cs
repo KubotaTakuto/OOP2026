@@ -7,7 +7,7 @@ namespace Execrcise01 {
         }
 
         private void btButton1_Click(object sender, EventArgs e) {
-            tbOut1.Text = DateTime.Now.ToString();
+            tbOut1.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
         }
 
         private void btButton2_Click(object sender, EventArgs e) {
