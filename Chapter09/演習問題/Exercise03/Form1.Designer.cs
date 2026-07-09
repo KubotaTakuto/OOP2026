@@ -23,9 +23,14 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             btStart = new Button();
             btStop = new Button();
             lbTimeDisp = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            tbReset = new Button();
+            ラップボックス = new ListBox();
+            btLapTime = new Button();
             SuspendLayout();
             // 
             // btStart
@@ -57,12 +62,49 @@
             lbTimeDisp.Size = new Size(343, 40);
             lbTimeDisp.TabIndex = 1;
             // 
+            // timer1
+            // 
+            timer1.Interval = 1;
+            timer1.Tick += timer1_Tick;
+            // 
+            // tbReset
+            // 
+            tbReset.Location = new Point(37, 151);
+            tbReset.Name = "tbReset";
+            tbReset.Size = new Size(163, 48);
+            tbReset.TabIndex = 2;
+            tbReset.Text = "リセット";
+            tbReset.UseVisualStyleBackColor = true;
+            tbReset.Click += tbReset_Click;
+            // 
+            // ラップボックス
+            // 
+            ラップボックス.FormattingEnabled = true;
+            ラップボックス.ItemHeight = 15;
+            ラップボックス.Location = new Point(406, 22);
+            ラップボックス.Name = "ラップボックス";
+            ラップボックス.Size = new Size(173, 199);
+            ラップボックス.TabIndex = 3;
+            // 
+            // btLapTime
+            // 
+            btLapTime.Location = new Point(217, 151);
+            btLapTime.Name = "btLapTime";
+            btLapTime.Size = new Size(163, 48);
+            btLapTime.TabIndex = 4;
+            btLapTime.Text = "ラップ";
+            btLapTime.UseVisualStyleBackColor = true;
+            btLapTime.Click += btLapTime_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 255, 255);
-            ClientSize = new Size(437, 163);
+            ClientSize = new Size(591, 236);
+            Controls.Add(btLapTime);
+            Controls.Add(ラップボックス);
+            Controls.Add(tbReset);
             Controls.Add(lbTimeDisp);
             Controls.Add(btStop);
             Controls.Add(btStart);
@@ -76,5 +118,9 @@
         private Button btStart;
         private Button btStop;
         private Label lbTimeDisp;
+        private System.Windows.Forms.Timer timer1;
+        private Button tbReset;
+        private ListBox ラップボックス;
+        private Button btLapTime;
     }
 }
