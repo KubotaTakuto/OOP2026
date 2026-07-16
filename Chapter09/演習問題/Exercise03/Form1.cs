@@ -29,7 +29,7 @@ namespace Exercise03 {
         }
 
         private void btLapTime_Click(object sender, EventArgs e) {
-            ラップボックス.Items.Insert(0, lbTimeDisp.Text);
+            lapBox.Items.Insert(0, lbTimeDisp.Text);
         }
     }
 }

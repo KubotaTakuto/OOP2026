@@ -29,7 +29,7 @@
             lbTimeDisp = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             tbReset = new Button();
-            ラップボックス = new ListBox();
+            lapBox = new ListBox();
             btLapTime = new Button();
             SuspendLayout();
             // 
@@ -77,14 +77,14 @@
             tbReset.UseVisualStyleBackColor = true;
             tbReset.Click += tbReset_Click;
             // 
-            // ラップボックス
+            // lapBox
             // 
-            ラップボックス.FormattingEnabled = true;
-            ラップボックス.ItemHeight = 15;
-            ラップボックス.Location = new Point(406, 22);
-            ラップボックス.Name = "ラップボックス";
-            ラップボックス.Size = new Size(173, 199);
-            ラップボックス.TabIndex = 3;
+            lapBox.FormattingEnabled = true;
+            lapBox.ItemHeight = 15;
+            lapBox.Location = new Point(406, 22);
+            lapBox.Name = "lapBox";
+            lapBox.Size = new Size(173, 199);
+            lapBox.TabIndex = 3;
             // 
             // btLapTime
             // 
@@ -103,7 +103,7 @@
             BackColor = Color.FromArgb(192, 255, 255);
             ClientSize = new Size(591, 236);
             Controls.Add(btLapTime);
-            Controls.Add(ラップボックス);
+            Controls.Add(lapBox);
             Controls.Add(tbReset);
             Controls.Add(lbTimeDisp);
             Controls.Add(btStop);
@@ -120,7 +120,7 @@
         private Label lbTimeDisp;
         private System.Windows.Forms.Timer timer1;
         private Button tbReset;
-        private ListBox ラップボックス;
+        private ListBox lapBox;
         private Button btLapTime;
     }
 }
