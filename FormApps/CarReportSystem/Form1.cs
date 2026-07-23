@@ -180,16 +180,9 @@ namespace CarReportSystem {
         }
 
         private void êFê›íËToolStripMenuItem_Click(object sender, EventArgs e) {
-            ColorDialog colorDialog = new ColorDialog();
 
-            colorDialog.CustomColors = new int[] {
-        ColorTranslator.ToOle(Color.LightPink),
-        ColorTranslator.ToOle(Color.LightBlue),
-        ColorTranslator.ToOle(Color.LightGreen)
-    };
-
-            if (colorDialog.ShowDialog() == DialogResult.OK) {
-                this.BackColor = colorDialog.Color;
+            if (cdColor.ShowDialog() == DialogResult.OK) {
+                this.BackColor = cdColor.Color;
             }
         }
     }
