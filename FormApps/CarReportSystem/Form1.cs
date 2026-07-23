@@ -174,5 +174,23 @@ namespace CarReportSystem {
 
             ImputItemsUpdate(); //データグリッドビューを更新したら呼ぶメソッド
         }
+
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            ColorDialog colorDialog = new ColorDialog();
+
+            colorDialog.CustomColors = new int[] {
+        ColorTranslator.ToOle(Color.LightPink),
+        ColorTranslator.ToOle(Color.LightBlue),
+        ColorTranslator.ToOle(Color.LightGreen)
+    };
+
+            if (colorDialog.ShowDialog() == DialogResult.OK) {
+                this.BackColor = colorDialog.Color;
+            }
+        }
     }
 }
