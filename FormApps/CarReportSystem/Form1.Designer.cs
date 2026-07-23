@@ -216,6 +216,8 @@
             // 
             // dgvRecords
             // 
+            dgvRecords.AllowUserToAddRows = false;
+            dgvRecords.AllowUserToDeleteRows = false;
             dgvRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvRecords.Location = new Point(81, 499);
             dgvRecords.MultiSelect = false;
@@ -224,6 +226,7 @@
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(773, 240);
             dgvRecords.TabIndex = 4;
+            dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
             dgvRecords.Click += dgvRecords_Click;
             // 
             // tbReport
@@ -279,6 +282,7 @@
             btDeletePicture.TabIndex = 6;
             btDeletePicture.Text = "削除";
             btDeletePicture.UseVisualStyleBackColor = true;
+            btDeletePicture.Click += btDeletePicture_Click;
             // 
             // btAddRecord
             // 
@@ -304,6 +308,7 @@
             btModifyRecord.TabIndex = 6;
             btModifyRecord.Text = "修正";
             btModifyRecord.UseVisualStyleBackColor = false;
+            btModifyRecord.Click += btModifyRecord_Click;
             // 
             // btDeleteRecord
             // 
@@ -316,6 +321,7 @@
             btDeleteRecord.TabIndex = 6;
             btDeleteRecord.Text = "削除";
             btDeleteRecord.UseVisualStyleBackColor = false;
+            btDeleteRecord.Click += btDeleteRecord_Click;
             // 
             // cbAuthor
             // 
@@ -425,6 +431,7 @@
             statusStrip1.Location = new Point(0, 746);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(869, 22);
+            statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 11;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -464,7 +471,9 @@
             Controls.Add(label1);
             Controls.Add(dtpDate);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
             groupBox1.ResumeLayout(false);
