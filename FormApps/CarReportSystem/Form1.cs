@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
@@ -18,6 +19,29 @@ namespace CarReportSystem {
             InitializeComponent();
             dgvRecords.DataSource = listCarReports;
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            //設定ファイルを読み込み背景色を設定する（逆シリアル化）
+            //P256以降を参考にする（ファイル名：settings.xml）
+            
+            //ファイルが存在するか？
+            if (/* P216以降を調べる */File.Exists("setting.xml")) {
+                try{
+                    using (var reader = XmlReader.Create("setting.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+                    }
+                }
+                catch (Exception ex){
+                    tsslbMessage.Text = "設定読み込みエラー";
+                    MessageBox.Show(ex.Message);//←より具体的なエラーを出力
+                }
+            } else {
+                tsslbMessage.Text = "設定ファイルがありません";
+            }
+        }
+
         //追加ボタンイベントハンドラ
         private void btAddRecord_Click(object sender, EventArgs e) {
 
@@ -186,12 +210,16 @@ namespace CarReportSystem {
 
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
-                this.BackColor = cdColor.Color;
+                BackColor = cdColor.Color;
+                //変更された色の情報を保存
+                settings.MainFormBackColor = cdColor.Color.ToArgb();
             }
         }
+        //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosed(object sender,FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理(シリアル化)
             //P284以降を参考にする(ファイル名:setting.xml)
+
             using (var writer = XmlWriter.Create("setting.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
