@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -23,17 +24,18 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             //設定ファイルを読み込み背景色を設定する（逆シリアル化）
             //P256以降を参考にする（ファイル名：settings.xml）
-            
+
             //ファイルが存在するか？
             if (/* P216以降を調べる */File.Exists("setting.xml")) {
-                try{
+                try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        var settings = serializer.Deserialize(reader) as Settings;
+                        /*var*/ settings = serializer.Deserialize(reader) as Settings;
                         BackColor = Color.FromArgb(settings.MainFormBackColor);
                     }
+                    //settings.MainFormBackColor = BackColor.ToArgb();
                 }
-                catch (Exception ex){
+                catch (Exception ex) {
                     tsslbMessage.Text = "設定読み込みエラー";
                     MessageBox.Show(ex.Message);//←より具体的なエラーを出力
                 }
@@ -166,7 +168,7 @@ namespace CarReportSystem {
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
-            if(dgvRecords.SelectedRows.Count == 0) {
+            if (dgvRecords.SelectedRows.Count == 0) {
                 tsslbMessage.Text = "修正するレポートを選択してください";
                 return;
             }
@@ -196,7 +198,7 @@ namespace CarReportSystem {
 
             dtpDate.Value = carReport.Date;
             cbAuthor.Text = carReport.Author;
-            SetRadioButtonMaler (carReport.Maker);
+            SetRadioButtonMaler(carReport.Maker);
             cbCarName.Text = carReport.CarName;
             tbReport.Text = carReport.Report;
             pbPicture.Image = carReport.Picture;
@@ -216,7 +218,7 @@ namespace CarReportSystem {
             }
         }
         //フォームが閉じたら呼ばれるイベントハンドラ
-        private void Form1_FormClosed(object sender,FormClosedEventArgs e) {
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理(シリアル化)
             //P284以降を参考にする(ファイル名:setting.xml)
 
@@ -224,6 +226,29 @@ namespace CarReportSystem {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
             }
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+            reportSaveFile();
+        }
+        //ファイルセーブ処理
+        private void reportSaveFile() {
+            if(sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+#pragma warning disable SYSLIB0011
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "ファイル書き出しエラー";
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        //ファイルオープン処理
+        private void reportOpenFile() {
+
         }
     }
 }
