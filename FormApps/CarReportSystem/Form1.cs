@@ -274,6 +274,20 @@ namespace CarReportSystem {
                         SetCbAuthor(report.Author);
                         SetCbCarName(report.CarName);
                     }
+
+
+                    //if (cbAuthor.Items != null) {
+                    //    cbAuthor.Items.Clear();
+                    //    foreach (var item in listCarReports) {
+                    //        cbAuthor.Items.Add(item);
+                    //    }
+                    //}
+                    //if (cbCarName != null) {
+                    //    cbCarName.Items.Clear();
+                    //    foreach (var item in listCarReports) {
+                    //        cbCarName.Items.Add(item);
+                    //    }
+                    //}
                 }
                 catch (Exception ex) {
                     tsslbMessage.Text = "ファイル読み出しエラー";
