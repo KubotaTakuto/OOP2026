@@ -155,10 +155,11 @@ namespace CarReportSystem {
         private void btDeleteRecord_Click(object sender, EventArgs e) {
             //選択されているインデックスを取得
             //削除したいインデックスを指定してリストから削除
-            listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
-            ImputItemsUpdate(); //データーグリッドビューを更新したら呼ぶメソッド
-
-            dgvRecords.ClearSelection();    //セルの選択解除
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "削除するレポートを選択してください";
+                return;
+            }
+            listCarReports.Remove(carReport);            
         }
 
         private void ImputItemsUpdate() {
@@ -177,6 +178,11 @@ namespace CarReportSystem {
                     tsslbMessage.Text = "記録者、または車名が未入力です";
                 return;
             }
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "削除するレポートを選択してください";
+                return;
+            }
+
             //カーレポート管理用リストの該当する要素を書き換える
             listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value.Date;
             listCarReports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text.Trim();
