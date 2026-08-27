@@ -21,8 +21,15 @@ namespace CarReportSystem {
         private Settings() {}
 
         public void Load() {
-            //次回ここから入力
+            if (!File.Exists(FileName))
+            return;
 
+            using var reader = XmlReader.Create(FileName);
+            var serializer = new XmlSerializer(typeof(SettingsData));
+
+            if (serializer.Deserialize(reader) is Settings data) {
+                MainFormBackColor = data.MainFormBackColor;
+            }
         }
 
         public void Save() {
