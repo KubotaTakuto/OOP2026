@@ -11,5 +11,5 @@ public class Product {
     public string Name { get; set; } = string.Empty;
     //¤•i‰¿Ši
     [DisplayName("‰¿Ši")]
-    public int price {  get; set; }
+    public int Price {  get; set; }
 }
