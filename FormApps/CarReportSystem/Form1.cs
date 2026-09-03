@@ -212,6 +212,7 @@ namespace CarReportSystem {
                 Settings.Instance.MainFormBackColor = cdColor.Color.ToArgb();
             }
         }
+
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理(シリアル化)
@@ -222,9 +223,11 @@ namespace CarReportSystem {
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
             reportSaveFile();
         }
+
         private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
             reportOpenFile();
         }
+
         //ファイルセーブ処理
         private void reportSaveFile() {
             if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
@@ -243,6 +246,7 @@ namespace CarReportSystem {
                 }
             }
         }
+
         //ファイルオープン処理
         private void reportOpenFile() {
             if (ofdPicFileOpen.ShowDialog() == DialogResult.OK) {
