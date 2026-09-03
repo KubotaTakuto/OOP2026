@@ -1,4 +1,6 @@
-﻿namespace CarReportSystem {
+﻿using System.ComponentModel;
+
+namespace CarReportSystem {
     [Serializable]
     public class CarReport {
         //列挙型
@@ -11,17 +13,21 @@
             輸入車,
             その他
         }
-        [System.ComponentModel.DisplayName("日付")]
+        [DisplayName("ID")]
+        public int Id { get; set; }    //商品ID（自動採番）
+        [DisplayName("日付")]
         public DateTime Date { get; set; }  //日付
-        [System.ComponentModel.DisplayName("記録者")]
+        [DisplayName("記録者")]
         public string Author { get; set; } = string.Empty;  //記録者
-        [System.ComponentModel.DisplayName("メーカー")]
+        [DisplayName("メーカー")]
         public MakerGroup Maker { get; set; }   //メーカー
-        [System.ComponentModel.DisplayName("車名")]
+        [DisplayName("車名")]
         public string CarName { get; set; } = string.Empty; //車名
-        [System.ComponentModel.DisplayName("レポート")]
+        [DisplayName("レポート")]
         public string Report { get; set; } = string.Empty;  //レポート
-        [System.ComponentModel.DisplayName("画像")]
+        [DisplayName("画像")]
         public Image? Picture { get; set; } //画像
+
+
     }
 }
