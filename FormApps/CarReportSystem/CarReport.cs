@@ -13,7 +13,7 @@ namespace CarReportSystem {
             輸入車,
             その他
         }
-        [DisplayName("ID")]
+        //[DisplayName("ID")]
         public int Id { get; set; }    //商品ID（自動採番）
         [DisplayName("日付")]
         public DateTime Date { get; set; }  //日付
