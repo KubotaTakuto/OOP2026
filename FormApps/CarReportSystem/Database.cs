@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 
-namespace SQLiteProductSample;
+namespace CarReportSystem;
 
 public static class Database {
     private static readonly string DatabasePath =
