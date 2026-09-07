@@ -4,7 +4,7 @@ namespace SQLiteProductSample;
 
 public static class Database {
     private static readonly string DatabasePath =
-        Path.Combine(AppContext.BaseDirectory, "carreport.db");
+        Path.Combine(AppContext.BaseDirectory, "carreports.db");
 
     private static readonly string ConnectionString =
         $"Data Source={DatabasePath}";
