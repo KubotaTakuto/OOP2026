@@ -37,7 +37,7 @@ public class CarReportRepository() {
                 Maker = (CarReport.MakerGroup)reader.GetInt32(3),
                 CarName = reader.GetString(4),
                 Report = reader.GetString(5),
-                Picture = BytesToImage((byte[])reader[6])
+                Picture = reader.IsDBNull(6) ? null : BytesToImage(reader.GetFieldValue<byte[]>(6))
                 //Picture = Image.FromFile(reader.GetString(6))
             });
         }
@@ -66,10 +66,10 @@ public class CarReportRepository() {
 
         command.Parameters.AddWithValue("$date", carReport.Date);
         command.Parameters.AddWithValue("$author", carReport.Author);
-        command.Parameters.AddWithValue("$maker",carReport.Maker);
+        command.Parameters.AddWithValue("$maker", carReport.Maker);
         command.Parameters.AddWithValue("$carName", carReport.CarName);
         command.Parameters.AddWithValue("$report", carReport.Report);
-        command.Parameters.AddWithValue("$picture", carReport.Picture);
+        command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
 
 
         //一つの値を返すSQLを実行する
@@ -90,7 +90,7 @@ public class CarReportRepository() {
         command.CommandText =
             """
             UPDATE CarReports
-            SET Date = $date, Author = $author, Maker = $maker, CarName = $carname, Report = report, Picture = $picture
+            SET Date = $date, Author = $author, Maker = $maker, CarName = $carname, Report = $report, Picture = $picture
                 WHERE Id = $id;
             """;
 
