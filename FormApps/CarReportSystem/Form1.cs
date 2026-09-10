@@ -23,6 +23,7 @@ namespace CarReportSystem {
             try {
                 Settings.Instance.Load();
                 BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
+                reportOpenFile();
             }
             catch (Exception ex) {
                 tsslbMessage.Text = "設定読み込みエラー";
@@ -55,6 +56,7 @@ namespace CarReportSystem {
             SetCbCarName(cbCarName.Text);
             dgvRecords.CurrentRow.Selected = false; //セルの選択を解除する
             InputItemsAllClear();
+            reportSaveFile();
         }
 
         private MakerGroup GetRadioButtonMaker() {
@@ -227,10 +229,22 @@ namespace CarReportSystem {
 
         private readonly CarReportRepository _repository = new CarReportRepository();
 
-        //ファイルセーブ処理
+        private void ReloadProducts() {
+            InputItemsAllClear();
+
+            foreach (var product in _repository.GetAll()) {
+                _repository.Add(product);
+            }
+
+            //dgvProducts.ClearSelection();
+        }
+
+        //DBセーブ処理
         private void reportSaveFile() {
             try {
-                //_repository.Update();
+                foreach (var report in listCarReports) {
+                    _repository.Add(report);
+                }
             }
             catch (Exception ex) {
                 tsslbMessage.Text = "ファイル書き出しエラー";
@@ -238,10 +252,12 @@ namespace CarReportSystem {
             }
         }
 
-        //ファイルオープン処理
+        //DBロード処理
         private void reportOpenFile() {
             try {
-                _repository.GetAll();
+                using (FileStream fs = File.Open(ofdPicFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
+                    dgvRecords.DataSource = listCarReports;
+                }
                 //コンボボックスの履歴をすべて消す
                 cbAuthor.Items.Clear();
                 cbCarName.Items.Clear();

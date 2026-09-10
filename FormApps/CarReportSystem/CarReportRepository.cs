@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Imaging;
@@ -32,19 +33,17 @@ public class CarReportRepository() {
             carreports.Add(new CarReport {
                 Id = reader.GetInt32(0),
                 Date = DateTime.ParseExact(reader.GetString(1), "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                //Date = reader.GetDateTime(1),
                 Author = reader.GetString(2),
                 Maker = (CarReport.MakerGroup)reader.GetInt32(3),
                 CarName = reader.GetString(4),
                 Report = reader.GetString(5),
                 Picture = reader.IsDBNull(6) ? null : BytesToImage(reader.GetFieldValue<byte[]>(6))
-                //Picture = Image.FromFile(reader.GetString(6))
             });
         }
         return carreports;
     }
 
-    //商品を1件追加する。Create（INSERT）に相当する
+    //レポートを1件追加する。Create（INSERT）に相当する
     //戻り値として自動採番されたIdを返す
     public int Add(CarReport carReport) {
         //接続オブジェクトを生成する
@@ -63,14 +62,7 @@ public class CarReportRepository() {
             VALUES($date, $author, $maker, $carName, $report, $picture);
             SELECT last_insert_rowid();
             """;
-
-        command.Parameters.AddWithValue("$date", carReport.Date);
-        command.Parameters.AddWithValue("$author", carReport.Author);
-        command.Parameters.AddWithValue("$maker", carReport.Maker);
-        command.Parameters.AddWithValue("$carName", carReport.CarName);
-        command.Parameters.AddWithValue("$report", carReport.Report);
-        command.Parameters.AddWithValue("$picture", ImageToBytes(carReport.Picture));
-
+        SetCommandParameters(carReport, command);
 
         //一つの値を返すSQLを実行する
         var result = command.ExecuteScalar();
@@ -94,17 +86,12 @@ public class CarReportRepository() {
                 WHERE Id = $id;
             """;
 
-        command.Parameters.AddWithValue("$date", carReport.Date);
-        command.Parameters.AddWithValue("author", carReport.Author);
-        command.Parameters.AddWithValue("$maker", carReport.Maker);
-        command.Parameters.AddWithValue("carName", carReport.CarName);
-        command.Parameters.AddWithValue("report", carReport.Report);
-        command.Parameters.AddWithValue("picture", ImageToBytes(carReport.Picture));
+        SetCommandParameters(carReport, command);
         command.Parameters.AddWithValue("$id", carReport.Id);
 
         //更新件数が0なら対象が存在しない
         if (command.ExecuteNonQuery() == 0)
-            throw new InvalidOperationException("修正対象の商品が見つかりませんでした。");
+            throw new InvalidOperationException("修正対象のレポートが見つかりませんでした。");
     }
 
     public void Delete(int id) {
@@ -119,7 +106,8 @@ public class CarReportRepository() {
             """;
 
         command.Parameters.AddWithValue("$id", id);
-        command.ExecuteNonQuery();
+        if (command.ExecuteNonQuery() == 0)
+            throw new InvalidOperationException("削除対象のレポートが見つかりませんでした。");
     }
 
     // ImageをSQLiteへ保存できるbyte[]へ変換する
@@ -138,6 +126,24 @@ public class CarReportRepository() {
         using var image = Image.FromStream(stream);
         // MemoryStream破棄後も利用できるようBitmapとしてコピーする。
         return new Bitmap(image);
+    }
+
+    private static void SetCommandParameters(CarReport carReport, SqliteCommand command) {
+        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report);
+
+        //Image型の画像を、SQLiteへ保存できるbyte配列に変換する
+        byte[]? pictureData = ImageToBytes(carReport.Picture);
+        //$pictureパラメータをBLOB型として追加する
+        var pictureParameter = command.Parameters.Add("$picture", SqliteType.Blob);
+        if (pictureData is not null) {
+            pictureParameter.Value = pictureData;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
     }
 }
 
