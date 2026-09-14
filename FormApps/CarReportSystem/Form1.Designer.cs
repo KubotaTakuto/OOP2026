@@ -49,8 +49,6 @@
             cbCarName = new ComboBox();
             menuStrip1 = new MenuStrip();
             ファイルFToolStripMenuItem = new ToolStripMenuItem();
-            開くToolStripMenuItem = new ToolStripMenuItem();
-            保存ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             色設定ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator3 = new ToolStripSeparator();
@@ -354,24 +352,10 @@
             // 
             // ファイルFToolStripMenuItem
             // 
-            ファイルFToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 開くToolStripMenuItem, 保存ToolStripMenuItem, toolStripSeparator2, 色設定ToolStripMenuItem, toolStripSeparator3, 終了ToolStripMenuItem });
+            ファイルFToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator2, 色設定ToolStripMenuItem, toolStripSeparator3, 終了ToolStripMenuItem });
             ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
             ファイルFToolStripMenuItem.Size = new Size(67, 20);
             ファイルFToolStripMenuItem.Text = "ファイル(&F)";
-            // 
-            // 開くToolStripMenuItem
-            // 
-            開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(180, 22);
-            開くToolStripMenuItem.Text = "開く…";
-            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
-            // 
-            // 保存ToolStripMenuItem
-            // 
-            保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(180, 22);
-            保存ToolStripMenuItem.Text = "保存…";
-            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
@@ -528,8 +512,6 @@
         private ComboBox cbCarName;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem ファイルFToolStripMenuItem;
-        private ToolStripMenuItem 開くToolStripMenuItem;
-        private ToolStripMenuItem 保存ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem 色設定ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;

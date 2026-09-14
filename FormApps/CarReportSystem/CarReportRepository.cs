@@ -94,6 +94,24 @@ public class CarReportRepository() {
             throw new InvalidOperationException("修正対象のレポートが見つかりませんでした。");
     }
 
+    private static void SetCommandParameters(CarReport report, SqliteCommand command) {
+        command.Parameters.AddWithValue("$date", report.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+        command.Parameters.AddWithValue("$author", report.Author);
+        command.Parameters.AddWithValue("$maker", report.Maker);
+        command.Parameters.AddWithValue("$carName", report.CarName);
+        command.Parameters.AddWithValue("$report", report.Report);
+
+        //Image型の画像を、SQLiteへ保存できるbyte配列に変換する
+        byte[]? pictureData = ImageToBytes(report.Picture);
+        //$pictureパラメータをBLOB型として追加する
+        var pictureParameter = command.Parameters.Add("$picture", SqliteType.Blob);
+        if (pictureData is not null) {
+            pictureParameter.Value = pictureData;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
+    }
+
     public void Delete(int id) {
         using var connection = Database.GetConnection();
         connection.Open();
@@ -126,24 +144,6 @@ public class CarReportRepository() {
         using var image = Image.FromStream(stream);
         // MemoryStream破棄後も利用できるようBitmapとしてコピーする。
         return new Bitmap(image);
-    }
-
-    private static void SetCommandParameters(CarReport carReport, SqliteCommand command) {
-        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
-        command.Parameters.AddWithValue("$author", carReport.Author);
-        command.Parameters.AddWithValue("$maker", carReport.Maker);
-        command.Parameters.AddWithValue("$carName", carReport.CarName);
-        command.Parameters.AddWithValue("$report", carReport.Report);
-
-        //Image型の画像を、SQLiteへ保存できるbyte配列に変換する
-        byte[]? pictureData = ImageToBytes(carReport.Picture);
-        //$pictureパラメータをBLOB型として追加する
-        var pictureParameter = command.Parameters.Add("$picture", SqliteType.Blob);
-        if (pictureData is not null) {
-            pictureParameter.Value = pictureData;
-        } else {
-            pictureParameter.Value = DBNull.Value;
-        }
     }
 }
 

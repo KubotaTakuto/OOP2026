@@ -4,7 +4,7 @@ namespace CarReportSystem;
 
 public static class Database {
     private static readonly string DatabasePath =
-        Path.Combine(AppContext.BaseDirectory, "carreports.db");
+        Path.Combine(AppContext.BaseDirectory, "carreport.db");
 
     private static readonly string ConnectionString =
         $"Data Source={DatabasePath}";
@@ -22,7 +22,7 @@ public static class Database {
         using var command = connection.CreateCommand();
         command.CommandText =
             """
-            CREATE TABLE IF NOT EXISTS Carreports(
+            CREATE TABLE IF NOT EXISTS CarReports(
             Id          INTEGER PRIMARY KEY AUTOINCREMENT,
             Date        TEXT    MOT MULL,
             Author      TEXT    NOT NULL,
