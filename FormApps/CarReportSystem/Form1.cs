@@ -237,39 +237,5 @@ namespace CarReportSystem {
 
             Settings.Instance.Save();
         }
-
-        //DBセーブ処理
-        private void reportSaveFile() {
-            try {
-                foreach (var report in _carreports) {
-                    _repository.Add(report);
-                }
-            }
-            catch (Exception ex) {
-                tsslbMessage.Text = "ファイル書き出しエラー";
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //DBロード処理
-        private void reportOpenFile() {
-            try {
-                using (FileStream fs = File.Open(ofdPicFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
-                    dgvRecords.DataSource = _carreports;
-                }
-                //コンボボックスの履歴をすべて消す
-                cbAuthor.Items.Clear();
-                cbCarName.Items.Clear();
-                //コンボボックスの履歴を再登録
-                foreach (var report in _carreports) {
-                    SetCbAuthor(report.Author);
-                    SetCbCarName(report.CarName);
-                }
-            }
-            catch (Exception ex) {
-                tsslbMessage.Text = "ファイル読み出しエラー";
-                MessageBox.Show(ex.Message);
-            }
-        }
     }
 }

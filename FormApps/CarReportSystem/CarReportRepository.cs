@@ -82,16 +82,13 @@ public class CarReportRepository() {
         command.CommandText =
             """
             UPDATE CarReports
-            SET Date = $date, Author = $author, Maker = $maker, CarName = $carname, Report = $report, Picture = $picture
+            SET Date = $date, Author = $author, Maker = $maker, CarName = $carName, Report = $report, Picture = $picture
                 WHERE Id = $id;
             """;
 
         SetCommandParameters(carReport, command);
         command.Parameters.AddWithValue("$id", carReport.Id);
-
-        //更新件数が0なら対象が存在しない
-        if (command.ExecuteNonQuery() == 0)
-            throw new InvalidOperationException("修正対象のレポートが見つかりませんでした。");
+        command.ExecuteNonQuery();
     }
 
     private static void SetCommandParameters(CarReport report, SqliteCommand command) {
