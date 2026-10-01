@@ -3,20 +3,15 @@
 *@
 
 @*このViewがProduct型を受け取る宣言*@
-@* @model MvcBasicSample.Models.Product;*@
 @model List<MvcBasicSample.Models.Product>
 
 @{
     ViewData["Title"] = "商品情報";    //タブ用のタイトル
-    var total = 0;
+    string productName = "ノート";
+    int price = 250;
 }
 
 <h1>商品情報</h1>    @*画面内の見出し*@
 
-<ul>@foreach (var product in Model)
-    {
-        <li>@product.Name @product.Price 円</li>
-        total += product.Price;
-    }
-    <p>合計金額 @total 円</p>
-</ul>
+<p>商品名：@productName</p>
+<p>価格：@price 円</p>
