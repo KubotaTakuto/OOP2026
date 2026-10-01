@@ -15,6 +15,62 @@ public class HelloController : Controller {
             new Product {
                 Name = "紅茶",
                 Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
+            },
+            new Product{
+                Name = "ハンバーガー",
+                Price = 500
+            },
+            new Product {
+                Name = "紅茶",
+                Price = 450
             }
         };
 
