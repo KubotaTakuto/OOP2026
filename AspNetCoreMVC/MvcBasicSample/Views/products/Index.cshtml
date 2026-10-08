@@ -16,12 +16,13 @@
     <p>@Model.Count 件の商品があります</p>
     <ul>
         @foreach (var product in Model) {
-            <li>@product.Name @product.Price 円</li>
+            <li>@product.Name @product.Price 円　説明：@product.Description</li>
 
             @if (product.Stock == 0) {
                 <sapn class=" text-danger fw-bold">売り切れ</sapn>
             } else {
                 <span>在庫 @product.Stock</span>
+                <p></p>
             }
         }
     </ul>
