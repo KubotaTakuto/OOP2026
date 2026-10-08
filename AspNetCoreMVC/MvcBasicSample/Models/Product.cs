@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace MvcBasicSample.Models;
+
 //商品1件の名前と価格をまとめる
 public class Product {
     public int Id { get; set; }//主キー
