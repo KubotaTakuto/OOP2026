@@ -1,0 +1,22 @@
+﻿using Microsoft.AspNetCore.Mvc; // MVC の機能を使用
+using Microsoft.EntityFrameworkCore; // ToListAsync を使用
+using MvcBasicSample.Data; // AppDbContext を使用 
+
+namespace MvcBasicSample.Controllers;
+
+// データベースの商品一覧を表示する Controller
+public class ProductsController : Controller{
+    private readonly AppDbContext _db; // DB へ問い合わせるためのフィールド
+    
+    // ASP.NET Core から必要な AppDbContext を受け取る
+    public ProductsController(AppDbContext db) {
+        _db = db; // 受け取った AppDbContext をフィールドに保存
+    }
+
+    // /Products/Index で商品一覧を取得する（非同期メソッド）
+    public async Task<IActionResult> Index() {
+        // Id の昇順で取得し結果を List<Product>にする
+        var products =  await _db.Products.Where(product => product.Price > 300).OrderBy(product => product.Price).ToListAsync();
+        return View(products); // 商品一覧を View へ渡す
+    }
+}
