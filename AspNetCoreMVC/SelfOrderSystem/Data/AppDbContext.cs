@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SelfOrderSystem.Models;
-using SelfOrderSystem.ViewModels;
 
 namespace SelfOrderSystem.Data;
 public class AppDbContext : DbContext {

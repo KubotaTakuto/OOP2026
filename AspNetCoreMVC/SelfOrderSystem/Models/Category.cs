@@ -1,7 +1,6 @@
-﻿using SelfOrderSystem.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace SelfOrderSystem.ViewModels;
+namespace SelfOrderSystem.Models;
 public class Category {
     public int Id { get; set; } //主キー
     [Required]
