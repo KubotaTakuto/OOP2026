@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DistanceConverter;
-public class DistaceConverter {
+public class DistanceConverter {
     public ConverterBase From { get; init; }
     public ConverterBase To { get; init; }
 
     //コンストラクタ
-    public DistaceConverter(ConverterBase from, ConverterBase to) {
+    public DistanceConverter(ConverterBase from, ConverterBase to) {
         From = from;
         To = to;
     }
