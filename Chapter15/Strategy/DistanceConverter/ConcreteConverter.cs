@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DistanceConverter;
 public class MeterConverter : ConverterBase {
     public override bool IsMyUnit(string name) =>
-        name.ToLower() == "mater" || name == UnitName;
+        name.ToLower() == "meter" || name == UnitName;
     protected override double Ratio => 1;
     public override string UnitName => "メートル";
 }
@@ -40,9 +40,9 @@ public class MileConverter : ConverterBase {
     public override string UnitName => "マイル";
 }
 
-public class KmConverter : ConverterBase {
+public class KilometerConverter : ConverterBase {
     public override bool IsMyUnit(string name) =>
-        name.ToLower() == "km" || name == UnitName;
+        name.ToLower() == "kilometer" || name == UnitName;
     protected override double Ratio => 1000;
     public override string UnitName => "キロメートル";
 }
