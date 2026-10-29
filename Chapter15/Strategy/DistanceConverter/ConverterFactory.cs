@@ -13,7 +13,7 @@ public class ConverterFactory {
         new InchConverter(),
         new YardConverter(),
         new MileConverter(),
-        new KilomaterConverter(),
+        new KilometerConverter(),
     };
 
     public static ConverterBase? GetInstance(string name) =>
