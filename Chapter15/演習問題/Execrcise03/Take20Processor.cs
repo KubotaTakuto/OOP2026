@@ -15,15 +15,3 @@ namespace Exercise03 {
         public void Terminate() => Console.WriteLine("{0} 行", _count);
     }
 }
-
-namespace Exercise03 {
-    public class Take20Processor : ITextFileService {
-        public void Initialize(string fileName) {
-            // 初期化が不要なら何もしない
-        }
-
-        public void Excute(string line) {
-            Console.WriteLine(line);
-        }
-    }
-}
