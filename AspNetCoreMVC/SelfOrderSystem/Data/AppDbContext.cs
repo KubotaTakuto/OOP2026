@@ -13,4 +13,24 @@ public class AppDbContext : DbContext {
 
     //ProductテーブルをProduct型として問い合わせるためのプロパティ
     public DbSet<Product> Products => Set<Product>();
+
+    //OrderテーブルをOrder型として問い合わせるためのプロパティ
+    public DbSet<Order> Orders => Set<Order>();
+
+    //OrderItemテーブルをOrderItem型として問い合わせるためのプロパティ
+    public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Order>()
+            .HasIndex(o => o.PublicId)
+            .IsUnique();                 // 公開IDの重複を防止 
+
+        modelBuilder.Entity<OrderItem>()
+            .HasOne(i => i.Product)
+            .WithMany()
+            .HasForeignKey(i => i.ProductId)
+            .OnDelete(DeleteBehavior.Restrict); // 注文履歴を保護 
+    }
 }
