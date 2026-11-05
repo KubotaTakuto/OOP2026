@@ -9,7 +9,7 @@ public class LineCounterProcessor : TextProcessor{
     protected override void Initialize(string fname) =>
         _count = 0;
 
-    protected override void Excute(string line) =>
+    protected override void Execute(string line) =>
         _count++;
 
     protected override void Terminate() =>

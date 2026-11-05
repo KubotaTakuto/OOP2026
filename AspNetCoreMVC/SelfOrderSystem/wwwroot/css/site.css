@@ -1,22 +1,130 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+/* ===== 田舎の洋食店風デザイン ===== */
+:root {
+    --brand-color: #6b4f3a; /* 木目ブラウン */
+    --accent-color: #d29b5e; /* キャラメル色 */
+    --page-bg: #f8f2e8; /* クリーム色 */
+}
+
+body {
+    background-color: var(--page-bg);
+    font-family: "Yu Gothic", sans-serif;
+    color: #4a3a2a;
+}
+
+/* タイトル */
+h1, h2, h3 {
+    color: var(--brand-color);
+    font-weight: bold;
+}
+
+/* ナビゲーションバー */
+.navbar {
+    background-color: var(--brand-color) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+}
+
+    .nav-link:hover {
+        color: #ffe4b5 !important;
+    }
+
+/* メインコンテンツ */
+main {
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* カード */
+.card {
+    background-color: #fffdf8;
+    border: 2px solid #e6d2b5;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+.btn-success,
+.btn-primary {
+    background-color: #b85c38;
+    border-color: #b85c38;
+}
+
+    .btn-success:hover,
+    .btn-primary:hover {
+        background-color: #96492d;
+        border-color: #96492d;
+    }
+
+/* 注文ボタンを大きめに */
+.btn-order {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 25px;
+}
+
+/* テーブル */
+.table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    .table thead {
+        background-color: var(--brand-color);
+        color: white;
+    }
+
+/* フッター */
+.footer {
+    background-color: var(--brand-color);
+    color: white;
+}
+
+/* 洋食店っぽい見出し */
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+    .page-title::after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 3px;
+        background-color: var(--accent-color);
+        margin: 8px auto;
+    }

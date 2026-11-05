@@ -34,5 +34,9 @@ namespace Section03 {
             sw.Stop();
             return sw.ElapsedMilliseconds;
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
     }
 }
