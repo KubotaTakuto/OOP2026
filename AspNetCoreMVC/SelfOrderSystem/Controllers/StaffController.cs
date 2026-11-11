@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc; // Controller を使用
 using Microsoft.EntityFrameworkCore; // EF Core の非同期処理を使用
 using SelfOrderSystem.Data; // AppDbContext を使用
+using SelfOrderSystem.Models; // OrderStatus を使用
+
 namespace SelfOrderSystem.Controllers;
+
 public class StaffController : Controller {
     private readonly AppDbContext _db; // DB への接続を担当
     public StaffController(AppDbContext db) {
@@ -18,4 +21,29 @@ public class StaffController : Controller {
                             .ToListAsync();                             // 注文一覧を取得
         return View(orders); // Views/Staff/Index.cshtml に渡す
     }
+
+    // 店員のボタン操作で注文状態を 1 段階進める
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Advance(int id) {
+        // 注文 ID から対象の注文を検索
+        var order = await _db.Orders.FindAsync(id);
+        if (order == null) {
+            return NotFound(); // 該当する注文がない
+        }
+        // 現在の状態に応じて次の状態へ変更
+        if (order.Status == OrderStatus.New) {
+            order.Status = OrderStatus.Accepted;
+        } else if (order.Status == OrderStatus.Accepted) {
+            order.Status = OrderStatus.Cooking;
+        } else if (order.Status == OrderStatus.Cooking) {
+            order.Status = OrderStatus.Served;
+        } else {
+            // 提供済みの注文は変更しない
+            return RedirectToAction(nameof(Index));
+        }
+        await _db.SaveChangesAsync(); // 変更を DB へ保存
+        return RedirectToAction(nameof(Index)); // 一覧へ戻る
+    }
+
 }
