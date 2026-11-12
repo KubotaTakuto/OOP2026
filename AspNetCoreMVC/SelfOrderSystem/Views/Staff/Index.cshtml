@@ -1,65 +1,97 @@
 ﻿@using SelfOrderSystem.Models
 @model List<Order>
+
 @{
- ViewData["Title"] = "店舗 注文一覧";
+    ViewData["Title"] = "注文受付表";
 }
-<h1 class="h3">店舗 注文一覧</h1>
-<p>注文日時の新しい順に最大 50 件を表示します</p>
-@* 注文が 0 件なら案内だけを表示 *@
-@if (Model.Count == 0)
-{
- <div class="alert alert-info">まだ注文はありません</div>
-}
-else
-{
-    @* 幅の狭い画面では表を横スクロール *@
-    <div class="table-responsive">
-    <table class="table table-striped table-bordered align-middle">
-    <thead>
-        <tr>
-            <th>注文 ID</th>
-            <th>注文日時</th>
-            <th>卓番</th>
-            <th>商品と数量</th>
-            <th>合計</th>
-            <th>状態</th>
-            <th>操作</th> @* 状態を変更するための列 *@
-        </tr>
-    </thead>
-            <tbody>
-                @* 外側の繰り返しは注文を 1 件ずつ表示 *@
-                @foreach (var order in Model) {
-                    <tr>
-                        <td>@order.Id</td>
-                        <td>@order.OrderedAtUtc.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</td>
-                        <td>@order.TableNumber</td>
-                        <td>
-                            @* 内側の繰り返しは各注文の商品を表示 *@
-                            @foreach (var item in order.Items) {
-                                <div>@item.Product?.Name × @item.Quantity</div>
-                            }
-                        </td>
-                        @* 注文した時点の単価で合計を計算 *@
-                        <td>@order.Items.Sum(i => i.UnitPrice * i.Quantity).ToString("N0") 円</td>
-                        <td>@order.Status.ToJapanese()</td>
-                        <td>
-                            @* 提供済み以外は次の操作ボタンを表示 *@
-                            @if (order.Status != OrderStatus.Served) {
-                                <form asp-controller="Staff" asp-action="Advance"
-                                      method="post">
-                                    @* 更新したい注文 ID を送信 *@
-                                    <input type="hidden" name="id" value="@order.Id" />
-                                    <button type="submit" class="btn btn-primary btn-sm">
-                                        @order.Status.NextActionLabel()
-                                    </button>
-                                </form>
-                            } else {
-                                <span class="text-muted">完了</span>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+
+<link rel="stylesheet" href="~/css/staff.css" asp-append-version="true" />
+
+<div class="order-board">
+
+    <div class="board-header">
+        <h1>注文受付表</h1>
+        <span>@Model.Count 件</span>
     </div>
-}
+
+    <div class="order-list">
+
+        @foreach (var order in Model) {
+            var total = order.Items.Sum(i => i.UnitPrice * i.Quantity);
+
+            <div class="order-ticket
+                    @(order.Status == OrderStatus.New ? "new" :
+                                   order.Status == OrderStatus.Cooking ? "cooking" :
+                                   "served")">
+
+            <div class="ticket-top">
+
+                    <div class="table-box">
+                        卓
+                        <span>@order.TableNumber</span>
+                    </div>
+
+                    <div class="order-info">
+                        <div class="order-no">
+                            注文番号 #@order.Id
+                        </div>
+
+                        <div class="order-time">
+                            @order.OrderedAtUtc
+                            .ToLocalTime()
+                            .ToString("HH:mm")
+                        </div>
+                    </div>
+
+                    <div class="status-badge">
+                        @order.Status.ToJapanese()
+                    </div>
+
+                </div>
+
+                <div class="ticket-items">
+
+                @foreach (var item in order.Items) {
+                        <div class="item-row">
+                            <span>@item.Product?.Name</span>
+                            <strong>@item.Quantity 個</strong>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="ticket-footer">
+
+                    <div class="ticket-total">
+                        ¥@total.ToString("N0")
+                    </div>
+
+                    @if (order.Status != OrderStatus.Served) {
+                        <form asp-controller="Staff"
+                              asp-action="Advance"
+                              method="post">
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@order.Id" />
+
+                            <button type="submit"
+                                    class="ticket-button">
+
+                                @order.Status.NextActionLabel()
+
+                            </button>
+
+                        </form>
+                    } else {
+                        <div class="done-text">
+                            提供完了
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
