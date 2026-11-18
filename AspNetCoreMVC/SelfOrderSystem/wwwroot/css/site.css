@@ -1,99 +1,130 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
-/* 商品写真を一定の高さで表示 */
-.so-product-photo {
-    display: block;
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    background: #f0eee9;
-}
-/* 写真の登録がない商品に表示 */
-.so-product-photo--empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    font-size: 0.95rem;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
-    overflow-x: hidden;
-    background: linear-gradient( 180deg, #0a4a8a 0%, #1e88e5 50%, #64b5f6 100% );
-    background-attachment: fixed;
 }
 
-/* コンテンツをガラス風に */
-.container,
-.container-fluid {
-    position: relative;
-    z-index: 1;
+/* ===== 田舎の洋食店風デザイン ===== */
+:root {
+    --brand-color: #6b4f3a; /* 木目ブラウン */
+    --accent-color: #d29b5e; /* キャラメル色 */
+    --page-bg: #f8f2e8; /* クリーム色 */
+}
+
+body {
+    background-color: var(--page-bg);
+    font-family: "Yu Gothic", sans-serif;
+    color: #4a3a2a;
+}
+
+/* タイトル */
+h1, h2, h3 {
+    color: var(--brand-color);
+    font-weight: bold;
+}
+
+/* ナビゲーションバー */
+.navbar {
+    background-color: var(--brand-color) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+}
+
+    .nav-link:hover {
+        color: #ffe4b5 !important;
+    }
+
+/* メインコンテンツ */
+main {
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
 }
 
 /* カード */
 .card {
-    background: rgba(255,255,255,0.92);
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    background-color: #fffdf8;
+    border: 2px solid #e6d2b5;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+.btn-success,
+.btn-primary {
+    background-color: #b85c38;
+    border-color: #b85c38;
+}
+
+    .btn-success:hover,
+    .btn-primary:hover {
+        background-color: #96492d;
+        border-color: #96492d;
+    }
+
+/* 注文ボタンを大きめに */
+.btn-order {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 25px;
 }
 
 /* テーブル */
 .table {
-    background: rgba(255,255,255,0.95);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-    .table th {
-        background: rgba(21,101,192,.1);
+    .table thead {
+        background-color: var(--brand-color);
+        color: white;
     }
 
-/* ボタン */
-.btn-primary,
-.btn-success {
-    background-color: #1565c0;
-    border-color: #1565c0;
+/* フッター */
+.footer {
+    background-color: var(--brand-color);
+    color: white;
 }
 
-    .btn-primary:hover,
-    .btn-success:hover {
-        background-color: #0d47a1;
-        border-color: #0d47a1;
+/* 洋食店っぽい見出し */
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+    .page-title::after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 3px;
+        background-color: var(--accent-color);
+        margin: 8px auto;
     }
-
-/* タイトル */
-h1,
-h2,
-h3 {
-    color: #000000;
-    text-shadow: none;
-}
-
-/*PCではカートをスクロールに追従させる*/
-@media (min-width: 992px){
-    .so-cart-sidebar{
-        position: sticky;
-        top: 90px;
-    }
-}

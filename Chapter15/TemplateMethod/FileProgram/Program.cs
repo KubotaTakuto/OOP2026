@@ -22,7 +22,7 @@ public class WordCounterProcessor : TextProcessor {
     //    Word = Console.ReadLine();
     //}
 
-    protected override void Excute(string line) =>
+    protected override void Execute(string line) =>
         _count += Regex.Matches(line, Regex.Escape(Word)).Count;
 
     protected override void Terminate() => Console.WriteLine($"「{Word}」は {_count} 回出現します");
