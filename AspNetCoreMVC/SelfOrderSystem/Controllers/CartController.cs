@@ -19,20 +19,15 @@ public class CartController : Controller {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Add(int productId) // 商品 ID を受け取る
- {
-        var product = await _db.Products
-                .AsNoTracking() // 読み取り専用
-                .SingleOrDefaultAsync(p => p.Id == productId && p.IsActive); // 利用可能な商品を 1 件取得
+    public async Task<IActionResult> Add(int productId) {
+        var product = await _db.Products.FindAsync(productId);
+
         if (product == null) {
-            return NotFound(); // 該当商品がなければ 404 を返す
+            return NotFound();
         }
 
-        if (product.IsSoldOut) {
-            TempData["Error"] = "この商品は売り切れです"; // 次の画面へエラーを渡す
-            return RedirectToAction("Index", "Menu");
-        }
-        _cart.Add(product); // カート変更は CartService へ任せる
+        _cart.Add(product);
+
         return RedirectToAction("Index", "Menu");
     }
 

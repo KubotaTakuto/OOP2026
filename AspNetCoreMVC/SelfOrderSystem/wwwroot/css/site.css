@@ -21,110 +21,117 @@ body {
     margin-bottom: 60px;
 }
 
-/* ===== 田舎の洋食店風デザイン ===== */
-:root {
-    --brand-color: #6b4f3a; /* 木目ブラウン */
-    --accent-color: #d29b5e; /* キャラメル色 */
-    --page-bg: #f8f2e8; /* クリーム色 */
-}
+/* ==================================
+   PS3風デザイン
+   ================================== */
 
 body {
-    background-color: var(--page-bg);
-    font-family: "Yu Gothic", sans-serif;
-    color: #4a3a2a;
+    margin-bottom: 60px;
+    overflow-x: hidden;
+    background: linear-gradient( 180deg, #d98a4e 0%, #f0b27a 55%, #fde5c8 100% );
+    background-attachment: fixed;
 }
 
-/* タイトル */
-h1, h2, h3 {
-    color: var(--brand-color);
-    font-weight: bold;
-}
-
-/* ナビゲーションバー */
-.navbar {
-    background-color: var(--brand-color) !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.navbar-brand,
-.nav-link {
-    color: #fff !important;
-}
-
-    .nav-link:hover {
-        color: #ffe4b5 !important;
-    }
-
-/* メインコンテンツ */
-main {
-    background-color: rgba(255,255,255,0.7);
-    border-radius: 15px;
-    padding: 20px;
-    margin-top: 20px;
+/* コンテンツ */
+.container,
+.container-fluid {
+    position: relative;
+    z-index: 1;
 }
 
 /* カード */
 .card {
-    background-color: #fffdf8;
-    border: 2px solid #e6d2b5;
-    border-radius: 15px;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
-    transition: 0.2s;
+    background: rgba(255,255,255,0.88);
+    border: none;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
 }
 
     .card:hover {
-        transform: translateY(-3px);
+        transform: translateY(-2px);
     }
 
-.btn-success,
-.btn-primary {
-    background-color: #b85c38;
-    border-color: #b85c38;
-}
-
-    .btn-success:hover,
-    .btn-primary:hover {
-        background-color: #96492d;
-        border-color: #96492d;
-    }
-
-/* 注文ボタンを大きめに */
-.btn-order {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 10px 25px;
+/* 商品画像 */
+.so-product-photo {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background: #f0eee9;
+    border-radius: 16px 16px 0 0;
 }
 
 /* テーブル */
 .table {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
+    background: rgba(255,255,255,0.95);
+    color: #000;
 }
 
-    .table thead {
-        background-color: var(--brand-color);
-        color: white;
+    .table th {
+        background: rgba(201,109,26,.12);
+        color: #000;
     }
+
+    .table td {
+        color: #000;
+    }
+
+/* 文字 */
+body,
+p,
+span,
+div,
+label,
+td,
+th,
+li {
+    color: #000;
+}
+
+/* 見出し */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #000;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+/* ボタン */
+.btn-primary,
+.btn-success {
+    background-color: #c96d1a;
+    border-color: #c96d1a;
+}
+
+    .btn-primary:hover,
+    .btn-success:hover {
+        background-color: #a85712;
+        border-color: #a85712;
+    }}
+
+    .btn-primary:hover,
+    .btn-success:hover {
+        background-color: #0d47a1;
+        border-color: #0d47a1;
+    }
+
+/* ナビゲーション */
+.navbar {
+    background-color: rgba(255,255,255,.8) !important;
+    backdrop-filter: blur(5px);
+}
+
+.navbar-brand,
+.nav-link {
+    color: #000 !important;
+}
 
 /* フッター */
 .footer {
-    background-color: var(--brand-color);
-    color: white;
+    color: #000;
 }
-
-/* 洋食店っぽい見出し */
-.page-title {
-    text-align: center;
-    margin-bottom: 25px;
-    position: relative;
-}
-
-    .page-title::after {
-        content: "";
-        display: block;
-        width: 120px;
-        height: 3px;
-        background-color: var(--accent-color);
-        margin: 8px auto;
-    }
