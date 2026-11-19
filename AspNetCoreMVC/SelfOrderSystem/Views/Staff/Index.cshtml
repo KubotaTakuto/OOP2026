@@ -37,9 +37,7 @@
                         </div>
 
                         <div class="order-time">
-                            @order.OrderedAtUtc
-                            .ToLocalTime()
-                            .ToString("HH:mm")
+                            @order.OrderedAtUtc.ToLocalTime().ToString("yyyy/MM/dd HH:mm:ss")
                         </div>
                     </div>
 
