@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+
+using SelfOrderSystem.Models;
 using SelfOrderSystem.Data;
 using SelfOrderSystem.Services;
 using SelfOrderSystem.Hubs;
@@ -28,6 +32,20 @@ builder.Services.AddScoped<CartService>(); // CartService を DI へ登録し Control
 builder.Services.AddScoped<IOrderService, OrderService>();  //サービス層を作成したことによる追加
 builder.Services.AddSignalR();
 
+// スタッフのパスワード照合用のサービス
+builder.Services.AddScoped<IPasswordHasher<StaffUser>,
+ PasswordHasher<StaffUser>>();
+// Cookie を使ったログイン方式を登録
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.LoginPath = "/Account/Login"; // 未ログイン時の遷移先
+                    options.AccessDeniedPath = "/Account/Denied"; // 権限不足時の遷移先
+                    options.Cookie.HttpOnly = true; // JavaScript から読み取り不可
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // HTTPS 限定
+                    options.ExpireTimeSpan = TimeSpan.FromHours(8); // 認証チケットの有効期間
+                });
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 //追加
@@ -47,19 +65,16 @@ if (!app.Environment.IsDevelopment()) {
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-//追加
 app.UseSession(); // このリクエストで Session を使えるようにする
-//////////
-
+app.UseAuthentication(); // 認証 Cookie からログイン状態を復元
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapHub<StaffOrdersHub>("/staffOrdersHub");
 
+//初回だけスタッフアカウントを登録
+await StaffAccountSeeder.InitializeAsync(app.Services);
 app.Run();
