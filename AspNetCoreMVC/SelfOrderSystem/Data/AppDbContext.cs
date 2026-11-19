@@ -8,29 +8,28 @@ public class AppDbContext : DbContext {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
     }   //受け取った設定を親クラスへ渡す
 
-    //CategoryテーブルをCategory型として問い合わせるためのプロパティ
+    //データベースの各テーブルをC#から問い合わせるためのプロパティ
     public DbSet<Category> Categories => Set<Category>();
-
-    //ProductテーブルをProduct型として問い合わせるためのプロパティ
     public DbSet<Product> Products => Set<Product>();
-
-    //OrderテーブルをOrder型として問い合わせるためのプロパティ
     public DbSet<Order> Orders => Set<Order>();
-
-    //OrderItemテーブルをOrderItem型として問い合わせるためのプロパティ
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
+    public DbSet<StaffUser> StaffUsers => Set<StaffUser>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Order>()
-            .HasIndex(o => o.PublicId)
-            .IsUnique();                 // 公開IDの重複を防止 
+                    .HasIndex(o => o.PublicId)
+                    .IsUnique();                 // 公開IDの重複を防止 
 
         modelBuilder.Entity<OrderItem>()
-            .HasOne(i => i.Product)
-            .WithMany()
-            .HasForeignKey(i => i.ProductId)
-            .OnDelete(DeleteBehavior.Restrict); // 注文履歴を保護 
+                    .HasOne(i => i.Product)
+                    .WithMany()
+                    .HasForeignKey(i => i.ProductId)
+                    .OnDelete(DeleteBehavior.Restrict); // 注文履歴を保護 
+
+        modelBuilder.Entity<StaffUser>()
+                    .HasIndex(u => u.UserName)
+                    .IsUnique();
     }
 }
