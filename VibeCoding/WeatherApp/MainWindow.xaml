@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="AI天気予報"
         Height="600"
-        Width="450">
+        Width="800">
 
     <Grid>
         <StackPanel VerticalAlignment="Center"
@@ -21,6 +21,12 @@
                 <ComboBoxItem Content="札幌"/>
 
             </ComboBox>
+
+            <TextBlock Text="🌤 AI Weather"
+           FontSize="26"
+           FontWeight="Bold"
+           Foreground="White"
+           HorizontalAlignment="Center"/>
 
             <TextBlock Text="東京の天気"
                    FontSize="24"
@@ -60,11 +66,30 @@
                    Margin="0,20,0,10"/>
 
             <ListBox x:Name="ForecastList"
-                   Width="350"
-                   Height="250"
-                   Background="#80FFFFFF"
-                   BorderThickness="0"
-                   FontSize="16"/>
+                       Height="180"
+                       Background="Transparent"
+                       BorderThickness="0"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.Resources>
+
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Width" Value="90"/>
+                        <Setter Property="Height" Value="120"/>
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="HorizontalContentAlignment"
+                Value="Center"/>
+                    </Style>
+
+                </ListBox.Resources>
+            </ListBox>
         </StackPanel>
 
         <Grid.Background>

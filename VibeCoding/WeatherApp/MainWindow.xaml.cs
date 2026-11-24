@@ -34,12 +34,12 @@ namespace AIWeather {
                 if (weather.daily?.time != null) {
                     for (int i = 0; i < weather.daily.time.Length; i++) {
                         ForecastList.Items.Add(
-                            $"{FormatDate(weather.daily.time[i])}\n" +
-                            $"天気：{GetWeatherDescription(weather.daily.weather_code[i])}\n" +
-                            $"最高：{weather.daily.temperature_2m_max[i]:F1}℃\n" +
-                            $"最低：{weather.daily.temperature_2m_min[i]:F1}℃\n" +
-                            $"降水確率：{weather.daily.precipitation_probability_max[i]}%\n"
-);
+                        $"{FormatDate(weather.daily.time[i])}\n" +
+                        $"{GetWeatherDescription(weather.daily.weather_code[i])}\n" +
+                        $"↑{weather.daily.temperature_2m_max[i]:F0}℃\n" +
+                        $"↓{weather.daily.temperature_2m_min[i]:F0}℃\n" +
+                        $"☔{weather.daily.precipitation_probability_max[i]}%"
+                        );
                     }
                 }
             } else {
